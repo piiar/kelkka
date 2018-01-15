@@ -4,39 +4,58 @@ using UnityEngine;
 
 using ZXing;
 using ZXing.QrCode;
-using Quobject.SocketIoClientDotNet.Client;
 using UnityEngine.UI;
+
+using System;
+using WebSocketSharp;
+using WebSocketSharp.Server;
+
+public class NetworkManager : WebSocketBehavior
+{
+    protected override void OnMessage(MessageEventArgs e)
+    {
+        this.OriginValidator = (val) =>
+        {
+            return true;
+        };
+
+        Debug.Log("Got message " + e.Data);
+        var msg = e.Data == "joinGame"
+                  ? "Joined the game"
+                  : "Unrecognized message";
+
+        Send(msg);
+    }
+}
 
 public class Test : MonoBehaviour {
 
     public Image qrimage;
+    public int port = 7777;
+
+    private WebSocketServer wssv;
 
 	// Use this for initialization
 	void Start () {
-        //QRCodeGenerator qrGenerator = new QRCodeGenerator();
-        //QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCodeGenerator.ECCLevel.Q);
-        //UnityQRCode qrCode = new UnityQRCode(qrCodeData);
-        //Texture2D qrCodeAsTexture2D = qrCode.GetGraphic(20);
+        String ip = Network.player.ipAddress;
+        Debug.Log("My IP address: " + ip);
 
-        Texture2D kuva = this.generateQR("http://www.octo3.fi");
+        Texture2D kuva = this.generateQR("http://" + ip + "/game.html?port=" + port);
         this.qrimage.sprite = Sprite.Create(kuva, new Rect(0, 0, 256, 256), new Vector2());
 
-        var socket = IO.Socket("http://localhost:3000");
-        socket.On(Socket.EVENT_CONNECT, () =>
-        {
-            socket.Emit("hi");
-        });
-        socket.On("hi", (data) =>
-        {
-            Debug.Log(data);
-            socket.Disconnect();
-        });
+        wssv = new WebSocketServer("ws://localhost:" + port);
+        wssv.AddWebSocketService<NetworkManager>("/");
+        wssv.Start();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("Stopping");
+            wssv.Stop();
+        }
+    }
 
     public Texture2D generateQR(string text)
     {
