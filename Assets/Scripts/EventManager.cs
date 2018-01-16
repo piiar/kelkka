@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,13 +14,17 @@ public class EventManager : MonoBehaviour
 
     public static EventManager instance = null;
 
+    // Message queue for moving events from network thread to UI thread
+    private static List<NetworkAction> actionQueue = new List<NetworkAction>();
+    private static System.Object queueLock = new System.Object();
+
     //Awake is always called before any Start functions
     void Awake()
     {
         if (instance == null)
         {
             instance = this;
-
+            eventDictionary = new Dictionary<string, GameEvent>();
         }
         else if (instance != this)
         {
@@ -29,11 +33,16 @@ public class EventManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    void Update()
     {
-        if (eventDictionary == null)
+        lock (queueLock)
         {
-            eventDictionary = new Dictionary<string, GameEvent>();
+            while (actionQueue.Count > 0)
+            {
+                NetworkAction action = actionQueue[0];
+                TriggerEvent(action.command, action.arg1);
+                actionQueue.RemoveAt(0);
+            }
         }
     }
 
@@ -71,6 +80,14 @@ public class EventManager : MonoBehaviour
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
         {
             thisEvent.Invoke(arg);
+        }
+    }
+
+    public static void AddNetworkEvent(NetworkAction action)
+    {
+        lock (queueLock)
+        {
+            actionQueue.Add(action);
         }
     }
 }
