@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour {
         EventManager.StartListening(userId, OnMessage);
     }
 
-    void OnMessage(string message) {
+    void OnMessage(NetworkAction message) {
         Debug.Log("player " + userId + " got message " + message);
     }
 }
