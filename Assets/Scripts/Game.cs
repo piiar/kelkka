@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Game : MonoBehaviour {
 
-    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
 
     private Dictionary<string, string> players;
 
@@ -58,8 +58,8 @@ public class Game : MonoBehaviour {
 
     private void createPlayer(string userId) {
         Debug.Log("createPlayer " + userId);
-        GameObject obj = Instantiate(playerPrefab) as GameObject;
-        PlayerController player = obj.GetComponent<PlayerController>();
+        GameObject obj = Instantiate(enemyPrefab) as GameObject;
+        EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(userId);
     }
 }
