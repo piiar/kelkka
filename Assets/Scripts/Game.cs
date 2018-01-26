@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
 
 public class PlayerData
 {
@@ -73,7 +74,10 @@ public class Game : MonoBehaviour {
             players.Add(ip, new PlayerData(ip, sessionId, uid.ToString()));
             createPlayer(ip);
         }
-        SocketServer.instance.SendMessage(sessionId, "OK " + players[ip].guid);
+        string response = "{"
+            + "'status':'OK',"
+            + "'token':'" + players[ip].guid + "'}";
+        SocketServer.instance.SendMessage(sessionId, response);
     }
 
     private void createPlayer(string ip) {
