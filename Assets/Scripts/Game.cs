@@ -86,4 +86,19 @@ public class Game : MonoBehaviour {
         EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
     }
+
+    public void PrepareToStartGame() {
+        string message = "{'command':'prepareStart'}";
+        SocketServer.instance.SendMessage("broadcast", message);
+    }
+
+    public void StartGame() {
+        string message = "{'command':'startGame'}";
+        SocketServer.instance.SendMessage("broadcast", message);
+    }
+
+    public void StopGame() {
+        string message = "{'command':'stopGame'}";
+        SocketServer.instance.SendMessage("broadcast", message);
+    }
 }
