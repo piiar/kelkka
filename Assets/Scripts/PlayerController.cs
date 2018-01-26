@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour {
         EventManager.StartListening(userId, OnMessage);
     }
 
-    void OnMessage(string message) {
-        Debug.Log("player " + userId + " got message " + message);
+    void OnMessage(NetworkAction message) {
+        Debug.Log("player " + userId + " got message " + message.command);
     }
 }

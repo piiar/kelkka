@@ -2,11 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PlayerData
+{
+    public string ip;
+    public string sessionId;
+    public string guid;
+
+    public PlayerData(string _ip, string _sessionId, string _guid) {
+        ip = _ip;
+        sessionId = _sessionId;
+        guid = _guid;
+    }
+}
+
 public class Game : MonoBehaviour {
 
     public GameObject playerPrefab;
 
-    private Dictionary<string, string> players;
+    private Dictionary<string, PlayerData> players;
 
     public static Game instance = null;
 
@@ -25,13 +38,13 @@ public class Game : MonoBehaviour {
 
     void Start()
     {
-        players = new Dictionary<string, string>();
-        EventManager.StartListening("joinGame", OnJoin);
+        players = new Dictionary<string, PlayerData>();
+        EventManager.StartListening("game", OnMessage);
     }
 
     void OnDisable()
     {
-        EventManager.StopListening("joinGame", OnJoin);
+        EventManager.StopListening("game", OnMessage);
     }
 
     // Update is called once per frame
@@ -39,27 +52,34 @@ public class Game : MonoBehaviour {
     {
     }
 
-    void OnJoin(string userId) {
-        // TODO sessionId
-        RegisterPlayer(userId, userId);
-    }
-
-    void RegisterPlayer(string userId, string sessionId) {
-        Debug.Log("registerPlayer " + userId);
-        if (players.ContainsKey(userId)) {
-            // old user reconnected, update sessionId
-            players[userId] = sessionId;
-        } else {
-            // new user
-            players.Add(userId, sessionId);
-            createPlayer(userId);
+    void OnMessage(NetworkAction action) {
+        if (action.command == "joinGame") {
+            this.OnJoin(action);
         }
     }
 
-    private void createPlayer(string userId) {
-        Debug.Log("createPlayer " + userId);
+    void OnJoin(NetworkAction data) {
+        RegisterPlayer(data.args[0], data.args[1]);
+    }
+
+    void RegisterPlayer(string ip, string sessionId) {
+        Debug.Log("registerPlayer " + ip);
+        if (players.ContainsKey(ip)) {
+            // old user reconnected, update sessionId
+            players[ip].sessionId = sessionId;
+        } else {
+            // new user
+            System.Guid uid = System.Guid.NewGuid();
+            players.Add(ip, new PlayerData(ip, sessionId, uid.ToString()));
+            createPlayer(ip);
+        }
+        SocketServer.instance.SendMessage(sessionId, "OK " + players[ip].guid);
+    }
+
+    private void createPlayer(string ip) {
+        Debug.Log("createPlayer " + ip);
         GameObject obj = Instantiate(playerPrefab) as GameObject;
         PlayerController player = obj.GetComponent<PlayerController>();
-        player.SetUserId(userId);
+        player.SetUserId(ip);
     }
 }

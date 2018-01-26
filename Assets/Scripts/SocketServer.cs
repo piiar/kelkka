@@ -8,14 +8,13 @@ using LitJson;
 public class NetworkAction {
     public string target;
     public string command;
-    public string arg1;
-    //public string arg2;
+    public string[] args;
 
-    public NetworkAction(string tgt, string cmd, string a1)
+    public NetworkAction(string tgt, string cmd, string[] a1)
     {
         target = tgt;
         command = cmd;
-        arg1 = a1;
+        args = a1;
     }
 }
 
@@ -40,10 +39,9 @@ public class GameSocketBehavior : WebSocketBehavior
 
         switch (data["command"].ToString()) {
             case "joinGame":
-                //TODO sessionId
                 Debug.Log("joinGame");
-                EventManager.AddNetworkEvent(new NetworkAction("game", "joinGame", userId));
-                Send("OK");
+                string[] args = { userId, ID };
+                EventManager.AddNetworkEvent(new NetworkAction("game", "joinGame", args));
                 break;
             case "left":
                 EventManager.AddNetworkEvent(new NetworkAction(userId, "left", null));
@@ -102,6 +100,28 @@ public class SocketServer : MonoBehaviour
         {
             Debug.Log("Stopping");
             wssv.Stop();
+        }
+    }
+
+    public void SendMessage(string target, string msg) {
+        Debug.Log("Sending " + msg + " to session " + target);
+        WebSocketServiceHost host = null;
+        wssv.WebSocketServices.TryGetServiceHost("/", out host);
+        if (host != null) {
+            if (target == "broadcast")
+            {
+                host.Sessions.BroadcastAsync(msg, null);
+            }
+            else
+            {
+                IWebSocketSession session;
+                if (!host.Sessions.TryGetSession(target, out session))
+                {
+                    Debug.Log("The session could not be found.");
+                    return;
+                }
+                host.Sessions.SendToAsync(msg, target, null);
+            }
         }
     }
 }
