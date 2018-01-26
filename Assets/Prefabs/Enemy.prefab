@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749567268256578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
+  m_LocalPosition: {x: 1.779144, y: 0.3, z: -4.498044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4475474769554850}
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1749567268256578}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf073973f28893429c999f3a1549d8e, type: 3}
+  m_Script: {fileID: 11500000, guid: cab18793290271c4fb2082b6612caa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!143 &143017671903427446
@@ -307,8 +307,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1
+  m_Radius: 0.25
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

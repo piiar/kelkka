@@ -6,8 +6,8 @@ using UnityEngine.Events;
 public class EnemyController : MonoBehaviour {
 
     private string userId = null;
-    //private Vector3 movement = Vector3.zero;
-    //private CharacterController controller;
+    private Vector3 movement = Vector3.zero;
+    private CharacterController controller;
 
     // Use this for initialization
     void Start() {
@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour {
         EventManager.StartListening(userId, OnMessage);
     }
 
-    void OnMessage(string message) {
+    void OnMessage(NetworkAction message) {
         Debug.Log("player " + userId + " got message " + message);
     }
 }
