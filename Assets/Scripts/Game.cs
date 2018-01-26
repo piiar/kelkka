@@ -18,7 +18,7 @@ public class PlayerData
 
 public class Game : MonoBehaviour {
 
-    public GameObject playerPrefab;
+    public GameObject enemyPrefab;
 
     private Dictionary<string, PlayerData> players;
 
@@ -82,8 +82,8 @@ public class Game : MonoBehaviour {
 
     private void createPlayer(string ip) {
         Debug.Log("createPlayer " + ip);
-        GameObject obj = Instantiate(playerPrefab) as GameObject;
-        PlayerController player = obj.GetComponent<PlayerController>();
+        GameObject obj = Instantiate(enemyPrefab) as GameObject;
+        EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
     }
 }
