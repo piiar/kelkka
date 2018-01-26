@@ -7,6 +7,7 @@ public class PlayerListItem : MonoBehaviour {
     public TextMeshProUGUI label; 
 
     public void SetName(string name){
+        label.GetComponent<TextMeshProUGUI>().enabled = true;
         label.SetText(name);
     }
 
