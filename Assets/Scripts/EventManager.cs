@@ -3,8 +3,9 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
+
 [System.Serializable]
-public class GameEvent : UnityEvent<string>
+public class GameEvent : UnityEvent<NetworkAction>
 {
 }
 
@@ -40,13 +41,13 @@ public class EventManager : MonoBehaviour
             while (actionQueue.Count > 0)
             {
                 NetworkAction action = actionQueue[0];
-                TriggerEvent(action.command, action.arg1);
+                TriggerEvent(action.target, action);
                 actionQueue.RemoveAt(0);
             }
         }
     }
 
-    public static void StartListening(string eventName, UnityAction<string> listener)
+    public static void StartListening(string eventName, UnityAction<NetworkAction> listener)
     {
         GameEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
@@ -61,7 +62,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public static void StopListening(string eventName, UnityAction<string> listener)
+    public static void StopListening(string eventName, UnityAction<NetworkAction> listener)
     {
         if (instance == null)
         {
@@ -74,7 +75,7 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public static void TriggerEvent(string eventName, string arg)
+    public static void TriggerEvent(string eventName, NetworkAction arg)
     {
         GameEvent thisEvent = null;
         if (instance.eventDictionary.TryGetValue(eventName, out thisEvent))
