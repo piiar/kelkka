@@ -20,6 +20,13 @@ public class WatcherRobotMovement : MonoBehaviour {
             return;
         }
 
+        // Try to save bit of processing power, and update the target more rarely.
+        // Also creates some divergence to the behaviour of robots.
+        thinkCounter -= Time.deltaTime;
+        if (thinkCounter > 0) {
+            return;
+        }
+
         // Strip away height differences to get accurate distance
         Vector2 a = new Vector2(target.position.x, target.position.z);
         Vector2 b = new Vector2(this.transform.position.x, this.transform.position.z);
@@ -28,18 +35,16 @@ public class WatcherRobotMovement : MonoBehaviour {
         if (distanceToTarget < stoppingRange) {
             // Do not move if close enough
             agent.isStopped = true;
+            thinkCounter = Random.Range(0, thinkCounterMax);
         }
         else if (distanceToTarget < accurateNavigationRange) {
+            // Midrange, update target every frame
             NavigateToTarget();
         }
         else {
-            // Try to save bit of processing power, and update the target more rarely.
-            // Also creates some divergence to the behaviour of far away robots.
-            thinkCounter -= Time.deltaTime;
-            if (thinkCounter <= 0) {
-                NavigateToTarget();
-                thinkCounter = thinkCounterMax;
-            }
+            // Far away
+            NavigateToTarget();
+            thinkCounter = thinkCounterMax;
         }
 
     }
