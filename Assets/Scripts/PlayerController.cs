@@ -125,10 +125,11 @@ public class PlayerController : MonoBehaviour {
     public void AddDamage(int damage, Vector3 direction) {
         if(!shield.activeSelf) {
             health -= damage;
+            Game.instance.Hud.SetPlayerHealth(Mathf.Max(health/100f, 0f));
 
-            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
-            sparkEmitter.transform.rotation = targetRotation;
-            sparkEmitter.Emit(10);
+            //Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            //sparkEmitter.transform.rotation = targetRotation;
+            //sparkEmitter.Emit(10);
 
             if(health <= 0) {
                 // TODO

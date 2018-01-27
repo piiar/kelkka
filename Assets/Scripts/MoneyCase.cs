@@ -24,4 +24,13 @@ public class MoneyCase : MonoBehaviour {
             startMoneyTotal -= amount;
         }
     }
+
+    void OnTriggerEnter(Collider collider) {
+        if(collider.CompareTag("Enemy")) {
+            // TODO: do something?
+            EnemyController enemy = collider.transform.GetComponent<EnemyController>();
+            //string id = enemy.userId;
+            Destroy(gameObject);
+        }
+    }
 }
