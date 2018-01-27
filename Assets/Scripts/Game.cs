@@ -155,6 +155,10 @@ public class Game : MonoBehaviour {
         return new List<NetworkEnemyData>(players.Values);
     }
 
+    public NetworkEnemyData GetEnemy(string id) {
+        return players[id];
+    }
+
     //private void RefreshActiveEnemies() {
     //    List<string> activeSessions = SocketServer.instance.GetActiveSessions();
     //    Debug.Log("active sessions " + activeSessions.Count);
