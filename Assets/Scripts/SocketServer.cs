@@ -83,14 +83,15 @@ public class SocketServer : MonoBehaviour
         string ip = Network.player.ipAddress;
         Debug.Log("My IP address: " + ip);
 
-        wssv = new WebSocketServer("ws://localhost:" + port);
+        wssv = new WebSocketServer("ws://" + ip + ":" + port);
         wssv.AddWebSocketService<GameSocketBehavior>("/");
         wssv.Start();
+        Debug.Log("WebSocket server listening on ws://" + ip + ":" + port);
     }
 
     void OnApplicationQuit() {
         if (wssv != null) {
-            Debug.Log("Quitting socket server");
+            Debug.Log("Quitting WebSocket server");
             wssv.Stop();
         }
     }

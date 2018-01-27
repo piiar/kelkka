@@ -8,11 +8,14 @@ public class PlayerData
     public string ip;
     public string sessionId;
     public string guid;
+    public string name;
+    public int points = 0;
 
-    public PlayerData(string _ip, string _sessionId, string _guid) {
+    public PlayerData(string _ip, string _sessionId, string _guid, string _name) {
         ip = _ip;
         sessionId = _sessionId;
         guid = _guid;
+        name = _name;
     }
 }
 
@@ -71,12 +74,16 @@ public class Game : MonoBehaviour {
         } else {
             // new user
             System.Guid uid = System.Guid.NewGuid();
-            players.Add(ip, new PlayerData(ip, sessionId, uid.ToString()));
+            string name = System.Guid.NewGuid().ToString().Substring(uid.ToString().Length - 4);
+            players.Add(ip, new PlayerData(ip, sessionId, uid.ToString(), name));
             createPlayer(ip);
         }
         string response = "{"
             + "'status':'OK',"
-            + "'token':'" + players[ip].guid + "'}";
+            + "'token':'" + players[ip].guid + "',"
+            + "'name':'" + players[ip].name + "',"
+            + "'points':" + players[ip].points
+            + "}";
         SocketServer.instance.SendMessage(sessionId, response);
     }
 
