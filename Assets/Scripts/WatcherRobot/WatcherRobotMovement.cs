@@ -1,20 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class WatcherRobotMovement : MonoBehaviour {
-    public GameObject target;
+    private Vector3 targetPos;
 
-    public void NavigateToTarget(){
-        GetComponent<NavMeshAgent>().SetDestination(target.transform.position);
+    private float stoppingRange;
+
+    void Start()
+    {
+        this.stoppingRange = 20f;
+        Stop();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
+        //Do not navigate if we are on top of our target;
+        if (stoppingRange > (Vector3.Distance(targetPos, this.transform.position)));
         {
             NavigateToTarget();
         }
+        
+    }
+
+    private void NavigateToTarget()
+    {
+        GetComponent<NavMeshAgent>().SetDestination(targetPos);
+    }
+
+    public void Stop()
+    {
+        targetPos = this.gameObject.transform.position;
+    }
+
+    public void SetMovementTarget(Vector3 targetPosition)
+    {
+        this.targetPos = targetPosition;
     }
 }
