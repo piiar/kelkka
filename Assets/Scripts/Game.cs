@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using LitJson;
+using UnityEngine.SceneManagement;
 
 enum GameState {
     Lobby,
@@ -17,7 +18,6 @@ public class PlayerEvent : UnityEvent<List<NetworkEnemyData>>
 
 public class Game : MonoBehaviour {
 
-    public GameObject enemyPrefab;
     public PlayerEvent playerListChanged;
 
     private Dictionary<string, NetworkEnemyData> players;
@@ -37,12 +37,13 @@ public class Game : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
+        players = new Dictionary<string, NetworkEnemyData>();
     }
 
     void Start()
     {
         Application.runInBackground = true;
-        players = new Dictionary<string, NetworkEnemyData>();
         EventManager.StartListening("game", OnMessage);
     }
 
@@ -105,7 +106,6 @@ public class Game : MonoBehaviour {
             System.Guid uid = System.Guid.NewGuid();
             string name = System.Guid.NewGuid().ToString().Substring(uid.ToString().Length - 4);
             players.Add(ip, new NetworkEnemyData(ip, sessionId, uid.ToString(), name));
-            createPlayer(ip);
         }
         string response = "{"
             + "'status':'OK',"
@@ -114,15 +114,6 @@ public class Game : MonoBehaviour {
             + "'points':" + players[ip].points
             + "}";
         SocketServer.instance.SendMessage(sessionId, response);
-    }
-
-    private void createPlayer(string ip) {
-        if (enemyPrefab == null) {
-            throw new UnityException("Enemy prefab is missing!");
-        }
-        GameObject obj = Instantiate(enemyPrefab) as GameObject;
-        EnemyController player = obj.GetComponent<EnemyController>();
-        player.SetUserId(ip);
     }
 
     public void PrepareToStartGame() {
@@ -134,12 +125,14 @@ public class Game : MonoBehaviour {
         state = GameState.InGame;
         string message = "{'command':'startGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
+        SceneManager.LoadSceneAsync("GameScene");
     }
 
     public void StopGame() {
         state = GameState.Lobby;
         string message = "{'command':'stopGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
+        SceneManager.LoadSceneAsync("LobbyScene");
     }
 
     public List<NetworkEnemyData> GetEnemies() {

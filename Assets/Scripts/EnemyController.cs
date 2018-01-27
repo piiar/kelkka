@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class EnemyController : MonoBehaviour {
 
     private string userId = null;
+    private string userName = null;
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
 
@@ -19,7 +20,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     void OnDestroy() {
-        if(userId != null) {
+        if (userId != null) {
             EventManager.StopListening(userId, OnMessage);
         }
     }
@@ -27,6 +28,10 @@ public class EnemyController : MonoBehaviour {
     public void SetUserId(string id) {
         userId = id;
         EventManager.StartListening(userId, OnMessage);
+    }
+
+    public void SetName(string name) {
+        userName = name;
     }
 
     void OnMessage(NetworkAction message) {

@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour {
     void OnControllerColliderHit(ControllerColliderHit hit) {
         float runCycle = Mathf.Repeat(anim.GetCurrentAnimatorStateInfo(0).normalizedTime + 0.5f, 1f);
         float feetHit = (runCycle < 0.5f ? 1 : -1);
-        print(feetHit);
+        //print(feetHit);
         float speed = anim.GetFloat(speedHash);
 
         if(feetHit != lastFeetHit) {
