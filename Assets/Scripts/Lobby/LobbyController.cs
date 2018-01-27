@@ -13,8 +13,7 @@ public class LobbyController : MonoBehaviour {
 
     public void ClickBegin()
     {
-        Debug.Log("Clicked Begin Button");
-        //GameObject.FindGameObjectWithTag("GameHandler").GetComponent<Game>().PrepareToStartGame();
+        //GameObject.FindGameObjectWithTag("GameHandler").GetComponent<Game>().StartGame();
     }
 
     public void PlayerListChanged(List<NetworkEnemyData> newList) {
