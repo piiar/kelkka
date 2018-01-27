@@ -9,27 +9,11 @@ enum GameState {
     Finish
 };
 
-public class PlayerData
-{
-    public string ip;
-    public string sessionId;
-    public string guid;
-    public string name;
-    public int points = 0;
-
-    public PlayerData(string _ip, string _sessionId, string _guid, string _name) {
-        ip = _ip;
-        sessionId = _sessionId;
-        guid = _guid;
-        name = _name;
-    }
-}
-
 public class Game : MonoBehaviour {
 
     public GameObject enemyPrefab;
 
-    private Dictionary<string, PlayerData> players;
+    private Dictionary<string, NetworkEnemyData> players;
 
     public static Game instance = null;
 
@@ -51,7 +35,7 @@ public class Game : MonoBehaviour {
     void Start()
     {
         Application.runInBackground = true;
-        players = new Dictionary<string, PlayerData>();
+        players = new Dictionary<string, NetworkEnemyData>();
         EventManager.StartListening("game", OnMessage);
     }
 
@@ -69,16 +53,21 @@ public class Game : MonoBehaviour {
         JsonData data = JsonMapper.ToObject(action.data);
 
         string command = data["command"].ToString();
-        if (command == "joinGame") {
-            this.OnJoin(action);
-        }
-        if (command == "transmitRobot") {
-            if (state != GameState.InGame) {
-                SendError(action.senderSession, "Invalid game state");
-            }
-            else {
-                this.OnAddRobot(action);
-            }
+        switch (command) {
+            case "joinGame":
+                this.OnJoin(action);
+                break;
+            case "transmitRobot":
+                if (state != GameState.InGame) {
+                    SendError(action.senderSession, "Invalid game state");
+                }
+                else {
+                    this.OnAddRobot(action);
+                }
+                break;
+            default:
+                Debug.Log("Unrecognized command: " + command);
+                break;
         }
     }
 
@@ -107,7 +96,7 @@ public class Game : MonoBehaviour {
             // new user
             System.Guid uid = System.Guid.NewGuid();
             string name = System.Guid.NewGuid().ToString().Substring(uid.ToString().Length - 4);
-            players.Add(ip, new PlayerData(ip, sessionId, uid.ToString(), name));
+            players.Add(ip, new NetworkEnemyData(ip, sessionId, uid.ToString(), name));
             createPlayer(ip);
         }
         string response = "{"
@@ -143,5 +132,9 @@ public class Game : MonoBehaviour {
         state = GameState.Lobby;
         string message = "{'command':'stopGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
+    }
+
+    public List<NetworkEnemyData> GetEnemies() {
+        return new List<NetworkEnemyData>(players.Values);
     }
 }

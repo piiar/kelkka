@@ -4,5 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
-  m_configObjects: {}
+  m_Scenes:
+  - enabled: 1
+    path: Assets/_Scenes/Scene_Piia.unity
+    guid: 4ca930e10a4834921a5be10d3a9fdcbe
+  - enabled: 1
+    path: Assets/_Scenes/GameScene.unity
+    guid: 357a0dc80af79f34798dc090086bd5fa

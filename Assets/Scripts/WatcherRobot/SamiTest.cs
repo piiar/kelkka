@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class SamiTest : MonoBehaviour {
     public GameObject miniRobot;
-
     public GameObject targetObject;
+    public WatcherRobotMovement navigation;
 
-	// Update is called once per frame
-	void Update () {
+    public void Start() {
+        navigation = miniRobot.GetComponent<WatcherRobotMovement>();
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            miniRobot.GetComponent<WatcherRobotMovement>().SetMovementTarget(targetObject.transform.position);
+            navigation.SetMovementTarget(targetObject.transform);
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            miniRobot.GetComponent<WatcherRobotMovement>().Stop();
+            navigation.Stop();
         }
 
     }

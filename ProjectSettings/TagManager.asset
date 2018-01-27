@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - GameHandler
+  - SpawnArea
   layers:
   - Default
   - TransparentFX

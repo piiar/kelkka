@@ -17,4 +17,5 @@ public class LobbyController : MonoBehaviour {
         //GameObject.FindGameObjectWithTag("GameHandler").GetComponent<Game>().PrepareToStartGame();
     }
 
+    
  }
