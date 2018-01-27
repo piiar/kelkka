@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LobbyController : MonoBehaviour {
 
-   
+    public GameObject playerList;
 
     public void ClickHelp()
     {
@@ -17,5 +17,21 @@ public class LobbyController : MonoBehaviour {
         //GameObject.FindGameObjectWithTag("GameHandler").GetComponent<Game>().PrepareToStartGame();
     }
 
-    
+    public void PlayerListChanged(List<NetworkEnemyData> newList) {
+        Debug.Log("PlayerListChanged");
+
+        if (playerList == null)
+        {
+            throw new UnityException("player list is missing!");
+        }
+
+        List<string> names = new List<string>();
+        foreach (NetworkEnemyData d in newList) {
+            names.Add(d.name);
+        }
+        PlayerList list = playerList.GetComponent<PlayerList>();
+        if (list) {
+            list.UpdatePlayerList(names);
+        }
+    }
  }

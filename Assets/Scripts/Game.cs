@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using LitJson;
 
 enum GameState {
@@ -9,9 +10,15 @@ enum GameState {
     Finish
 };
 
+[System.Serializable]
+public class PlayerEvent : UnityEvent<List<NetworkEnemyData>>
+{
+}
+
 public class Game : MonoBehaviour {
 
     public GameObject enemyPrefab;
+    public PlayerEvent playerListChanged;
 
     private Dictionary<string, NetworkEnemyData> players;
 
@@ -81,6 +88,7 @@ public class Game : MonoBehaviour {
         string ip = action.senderIp;
         string session = action.senderSession;
         RegisterPlayer(ip, session);
+        playerListChanged.Invoke(GetEnemies());
     }
 
     void OnAddRobot(NetworkAction action) {

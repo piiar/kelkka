@@ -9,12 +9,7 @@ public class PlayerList : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         players = new List<string>();
-        for (int i = 0; i < 20; i++)
-        {
-            AddPlayer("sami" + i);
-        }
-
-        UpdatePlayerList();
+        UpdatePlayerList(players);
 	}
 
     public void AddPlayer(string playerName){
@@ -22,10 +17,10 @@ public class PlayerList : MonoBehaviour {
     }
 
 
-    void UpdatePlayerList(){
+    public void UpdatePlayerList(List<string> _players) {
+        players = _players;
         //Remove all components.
         KillAllChild();
-
         //Recreate All based on List of players. 
         foreach (string playerName in players)
         {
@@ -33,10 +28,11 @@ public class PlayerList : MonoBehaviour {
         }
     }
 
-
-
     private void AddPlayerListItem(string playerName)
     {
+        if (!playerListItemPrefab) {
+            throw new UnityException("Player list item prefab missing!");
+        }
         PlayerListItem nameLabel = Instantiate(playerListItemPrefab) as PlayerListItem;
         nameLabel.gameObject.SetActive(true);
         nameLabel.transform.SetParent(this.transform, false);
