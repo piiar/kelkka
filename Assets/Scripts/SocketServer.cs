@@ -30,7 +30,7 @@ public class GameSocketBehavior : WebSocketBehavior
         Debug.Log("Got message " + e.Data + " from " + Context.UserEndPoint + ", sessionId=" + ID);
 
         JsonData data = JsonMapper.ToObject(e.Data);
-        if (data["command"] == null) {
+        if (data == null || data["command"] == null) {
             return;
         }
         //string param = data["param"].ToString();
@@ -89,8 +89,10 @@ public class SocketServer : MonoBehaviour
     }
 
     void OnApplicationQuit() {
-        Debug.Log("Quitting socket server");
-        wssv.Stop();
+        if (wssv != null) {
+            Debug.Log("Quitting socket server");
+            wssv.Stop();
+        }
     }
 
     // Update is called once per frame
