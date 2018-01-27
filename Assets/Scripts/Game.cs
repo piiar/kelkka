@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
 
+enum GameState {
+    Lobby,
+    InGame,
+    Finish
+};
+
 public class PlayerData
 {
     public string ip;
@@ -26,6 +32,8 @@ public class Game : MonoBehaviour {
     private Dictionary<string, PlayerData> players;
 
     public static Game instance = null;
+
+    private GameState state = GameState.Lobby;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -57,13 +65,36 @@ public class Game : MonoBehaviour {
     }
 
     void OnMessage(NetworkAction action) {
-        if (action.command == "joinGame") {
+        JsonData data = JsonMapper.ToObject(action.data);
+
+        string command = data["command"].ToString();
+        if (command == "joinGame") {
             this.OnJoin(action);
+        }
+        if (command == "transmitRobot") {
+            if (state != GameState.InGame) {
+                SendError(action.senderSession, "Invalid game state");
+            }
+            else {
+                this.OnAddRobot(action);
+            }
         }
     }
 
-    void OnJoin(NetworkAction data) {
-        RegisterPlayer(data.args[0], data.args[1]);
+    void SendError(string session, string message) {
+        string msg = "{'status':'error','message':'" + message + "'}";
+        SocketServer.instance.SendMessage(session, msg);
+    }
+
+    void OnJoin(NetworkAction action) {
+        Debug.Log("OnJoin data " + action.data);
+        string ip = action.senderIp;
+        string session = action.senderSession;
+        RegisterPlayer(ip, session);
+    }
+
+    void OnAddRobot(NetworkAction action) {
+        Debug.Log("OnAddRobot " + action);
     }
 
     void RegisterPlayer(string ip, string sessionId) {
@@ -102,11 +133,13 @@ public class Game : MonoBehaviour {
     }
 
     public void StartGame() {
+        state = GameState.InGame;
         string message = "{'command':'startGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
     }
 
     public void StopGame() {
+        state = GameState.Lobby;
         string message = "{'command':'stopGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
     }

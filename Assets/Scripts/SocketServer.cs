@@ -6,15 +6,15 @@ using WebSocketSharp.Server;
 using LitJson;
 
 public class NetworkAction {
-    public string target;
-    public string command;
-    public string[] args;
+    public string senderIp;
+    public string senderSession;
+    public string data;
 
-    public NetworkAction(string tgt, string cmd, string[] a1)
+    public NetworkAction(string _senderIp, string _senderSession, string _data)
     {
-        target = tgt;
-        command = cmd;
-        args = a1;
+        senderIp = _senderIp;
+        senderSession = _senderSession;
+        data = _data;
     }
 }
 
@@ -33,23 +33,10 @@ public class GameSocketBehavior : WebSocketBehavior
         if (data == null || data["command"] == null) {
             return;
         }
-        //string param = data["param"].ToString();
 
-        string userId = Context.UserEndPoint.Address.ToString();
+        string userIp = Context.UserEndPoint.Address.ToString();
 
-        switch (data["command"].ToString()) {
-            case "joinGame":
-                Debug.Log("joinGame");
-                string[] args = { userId, ID };
-                EventManager.AddNetworkEvent(new NetworkAction("game", "joinGame", args));
-                break;
-            case "left":
-                EventManager.AddNetworkEvent(new NetworkAction(userId, "left", null));
-                break;
-            case "right":
-                EventManager.AddNetworkEvent(new NetworkAction(userId, "right", null));
-                break;
-        }
+        EventManager.AddNetworkEvent(new NetworkAction(userIp, ID, e.Data));
         //List<string> ids = this.Sessions.ActiveIDs.ToList();
     }
 }
