@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        weaponCollider.enabled = false;
+        weaponCollider.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,9 +56,6 @@ public class PlayerController : MonoBehaviour {
 
         velocity = Mathf.Min(moveDirection.sqrMagnitude, 1f) * moveSpeed;
         movement = moveDirection * Time.deltaTime * velocity + new Vector3(0, verticalSpeed, 0);
-    }
-
-    void FixedUpdate() {
         controller.Move(movement);
         UpdateAnimator();
     }
@@ -85,7 +82,7 @@ public class PlayerController : MonoBehaviour {
     private float feetHit;
     private float lastFeetHit;
     void OnControllerColliderHit(ControllerColliderHit hit) {
-        float runCycle = Mathf.Repeat(anim.GetCurrentAnimatorStateInfo(0).normalizedTime, 1f);
+        float runCycle = Mathf.Repeat(anim.GetCurrentAnimatorStateInfo(0).normalizedTime + 0.5f, 1f);
         float feetHit = (runCycle < 0.5f ? 1 : -1);
         print(feetHit);
         float speed = anim.GetFloat(speedHash);
@@ -109,6 +106,6 @@ public class PlayerController : MonoBehaviour {
     }
 
     void SetWeaponColliderActive(bool enabled) {
-        weaponCollider.gameObject.SetActive(enabled);// = enabled;
+        weaponCollider.gameObject.SetActive(enabled);
     }
 }
