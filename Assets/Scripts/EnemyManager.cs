@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
@@ -42,8 +43,13 @@ public class EnemyManager : MonoBehaviour {
         EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
         player.SetName(name);
-        
-        player.InitEquipment((int)robotStructure["top"], (int)robotStructure["bottom"], (int)robotStructure["left"], (int)robotStructure["right"]);
+
+        int top = Int32.Parse(robotStructure["TOP"].ToString());
+        int bottom = Int32.Parse(robotStructure["BOTTOM"].ToString());
+        int left = Int32.Parse(robotStructure["LEFT"].ToString());
+        int right = Int32.Parse(robotStructure["RIGHT"].ToString());
+        Debug.Log("top " + top + " bottom " + bottom + " left " + left + " right " + right);
+        player.InitEquipment(top, bottom, left, right);
     }
 
 }

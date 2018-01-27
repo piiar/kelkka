@@ -26,6 +26,8 @@ public class Game : MonoBehaviour {
 
     private GameState state = GameState.Lobby;
 
+    public HudController Hud { get; private set; }
+
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -45,6 +47,8 @@ public class Game : MonoBehaviour {
     {
         Application.runInBackground = true;
         EventManager.StartListening("game", OnMessage);
+
+        Hud = FindObjectOfType<HudController>();
     }
 
     void OnDisable()

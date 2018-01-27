@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour {
 
-    private string userId = null;
+    public string userId { get; private set; }
     private string userName = null;
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
