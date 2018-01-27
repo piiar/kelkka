@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CommandConsole : MonoBehaviour {
-    private void OnTriggerEnter(Collider other)
+
+    public int counter;
+
+    public void Use()
     {
-        if (other.gameObject.tag == "player")
+
+        if (counter > 1000)
         {
-            
+            Debug.Log("Command Console hacked!");
         }
+        counter++;
+    }
+
+    public void ResetUse()
+    {
+        Debug.Log("Resetted Command Console! Counter Was : " + counter);
+        counter = 0;
     }
 }
