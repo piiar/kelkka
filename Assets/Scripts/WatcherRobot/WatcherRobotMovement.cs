@@ -51,7 +51,7 @@ public class WatcherRobotMovement : MonoBehaviour {
 
     private void NavigateToTarget() {
         agent.isStopped = false;
-        GetComponent<NavMeshAgent>().SetDestination(target.position);
+        agent.SetDestination(target.position);
     }
 
     public void Stop() {
