@@ -5,8 +5,8 @@ public class SmoothFollow : MonoBehaviour {
     private Vector3 velocity = Vector3.zero;
     private Camera cam;
     public Transform target;
-    [Range(5f, 25f)]
-    public float distance = 15f;
+    [Range(5f, 125f)]
+    public float distance = 70f;
 
     void Start() {
         cam = Camera.main;

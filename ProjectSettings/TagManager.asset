@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - GameHandler
   - SpawnArea
+  - Obstacle
+  - Enemy
   layers:
   - Default
   - TransparentFX

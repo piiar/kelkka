@@ -16,7 +16,6 @@ public class PlayerList : MonoBehaviour {
         players.Add(playerName);
     }
 
-
     public void UpdatePlayerList(List<string> _players) {
         players = _players;
         //Remove all components.
