@@ -42,6 +42,8 @@ public class EnemyManager : MonoBehaviour {
         EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
         player.SetName(name);
+        
+        player.InitEquipment((int)robotStructure["top"], (int)robotStructure["bottom"], (int)robotStructure["left"], (int)robotStructure["right"]);
     }
 
 }
