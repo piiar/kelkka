@@ -11,7 +11,12 @@ public class EnemyController : MonoBehaviour {
     private CharacterController controller;
     private int health = 30;
 
-        public ParticleSystem sparkEmitter;
+    public int speedClass; //Bottom -- 20*modifier 
+    public Weapon weapon_left;
+    public Weapon weapon_right;
+    private AiMode aiMode;
+
+    public ParticleSystem sparkEmitter;
 
     // Use this for initialization
     void Start() {
@@ -52,5 +57,57 @@ public class EnemyController : MonoBehaviour {
 
     void OnMessage(NetworkAction message) {
         Debug.Log("player " + userId + " got message " + message);
+    }
+
+    public void InitEquipment(int top, int bottom, int left, int right)
+    {
+        weapon_left = weaponFor(left);
+        weapon_right = weaponFor(right);
+        aiMode = aiFor(top);
+        //movement
+    }
+
+    private Weapon weaponFor(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return new Weapon("Shield", 0);
+            case 1:
+                return new Weapon("FlameThrower", 10);
+            default:
+                return new Weapon("Zap", 20);
+        }
+    }
+
+    private AiMode aiFor(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return AiMode.Aggressive; 
+            case 1:
+                return AiMode.Flanking;
+            default:
+                return AiMode.Objective;
+        }
+    }
+
+    public AiMode GetAIMode()
+    {
+        return aiMode;
+    }
+
+    public float MoveSpeed()
+    {
+        switch (speedClass)
+        {
+            case 0:
+                return 1.0f;
+            case 1:
+                return 1.3f;
+            default:
+                return 1.5f;
+        }
     }
 }
