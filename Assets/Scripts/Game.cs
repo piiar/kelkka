@@ -50,6 +50,7 @@ public class Game : MonoBehaviour {
 
     void Start()
     {
+        Application.runInBackground = true;
         players = new Dictionary<string, PlayerData>();
         EventManager.StartListening("game", OnMessage);
     }
