@@ -17,7 +17,7 @@ public class WeaponHandler : MonoBehaviour {
 
         if(collider.CompareTag("Enemy")) {
             EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
-            enemy.AddDamage(damage);
+            enemy.AddDamage(damage, enemy.transform.position - transform.position);
         }
     }
 }
