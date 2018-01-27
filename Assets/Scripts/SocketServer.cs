@@ -82,8 +82,7 @@ public class SocketServer : MonoBehaviour
     {
         string ip = Network.player.ipAddress;
         Debug.Log("My IP address: " + ip);
-
-        wssv = new WebSocketServer("ws://localhost:" + port);
+        wssv = new WebSocketServer("ws://192.168.0.105:" + port);
         wssv.AddWebSocketService<GameSocketBehavior>("/");
         wssv.Start();
     }

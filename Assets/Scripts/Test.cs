@@ -12,7 +12,7 @@ public class Test : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         string ip = Network.player.ipAddress;
-        Texture2D kuva = this.generateQR("http://" + ip + "/game.html?port=" + port);
+        Texture2D kuva = this.generateQR("http://" + ip);
         this.qrimage.sprite = Sprite.Create(kuva, new Rect(0, 0, 256, 256), new Vector2());
 	}
 	
