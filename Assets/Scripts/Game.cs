@@ -106,6 +106,7 @@ public class Game : MonoBehaviour {
         string name = players[action.senderIp].name;
         JsonData data = JsonMapper.ToObject(action.data);
         JsonData robotStructure = data["robot"];
+        Debug.Log("RoboStruct : " + robotStructure.ToString());
         EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure);
     }
 

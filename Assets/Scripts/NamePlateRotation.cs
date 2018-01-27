@@ -9,4 +9,9 @@ public class NamePlateRotation : MonoBehaviour {
         Transform lookAtPos = Camera.main.transform;
         transform.LookAt(2 * transform.position - lookAtPos.position);
     }
+
+    public void SetText()
+    {
+        //this.GetComponent<>
+    }
 }
