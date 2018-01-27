@@ -9,8 +9,9 @@ public class EnemyController : MonoBehaviour {
     private string userName = null;
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
+    private int health = 30;
 
-    public int health = 30;
+        public ParticleSystem sparkEmitter;
 
     // Use this for initialization
     void Start() {
@@ -27,8 +28,12 @@ public class EnemyController : MonoBehaviour {
         }
     }
 
-    public void AddDamage(int damage) {
+    public void AddDamage(int damage, Vector3 direction) {
         health -= damage;
+
+        //Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+        //sparkEmitter.transform.rotation = targetRotation;
+        //sparkEmitter.Emit(10);
 
         if(health <= 0) {
             // TODO

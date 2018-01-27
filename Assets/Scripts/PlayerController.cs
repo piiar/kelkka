@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour {
     private bool isAttacking;
     private bool isBlocking;
     private Vector3 moveDirection = Vector3.zero;
+    private int health = 100;
 
     private Vector3 movement = Vector3.zero;
     private float lookAngle = 0f;
     private CharacterController controller;
     public ParticleSystem dustEmitter;
+    public ParticleSystem sparkEmitter;
     public GameObject weapon;
     public GameObject shield;
     [Range(5f, 25f)]public float moveSpeed = 15f;
@@ -118,5 +120,20 @@ public class PlayerController : MonoBehaviour {
 
     void SetShieldActive(bool enabled) {
         shield.SetActive(enabled);
+    }
+
+    public void AddDamage(int damage, Vector3 direction) {
+        if(!shield.activeSelf) {
+            health -= damage;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            sparkEmitter.transform.rotation = targetRotation;
+            sparkEmitter.Emit(10);
+
+            if(health <= 0) {
+                // TODO
+                print("died");
+            }
+        }
     }
 }
