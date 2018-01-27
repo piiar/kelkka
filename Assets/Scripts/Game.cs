@@ -100,8 +100,13 @@ public class Game : MonoBehaviour {
         playerListChanged.Invoke((GetEnemies()));
     }
 
-    void OnAddRobot(NetworkAction action) {
+    void OnAddRobot(NetworkAction action)
+    {
         Debug.Log("OnAddRobot " + action);
+        string name = players[action.senderIp].name;
+        JsonData data = JsonMapper.ToObject(action.data);
+        JsonData robotStructure = data["robot"];
+        EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure);
     }
 
     void RegisterPlayer(string ip, string sessionId) {
@@ -115,8 +120,10 @@ public class Game : MonoBehaviour {
             string name = System.Guid.NewGuid().ToString().Substring(uid.ToString().Length - 4);
             players.Add(ip, new NetworkEnemyData(ip, sessionId, uid.ToString(), name));
         }
+        string isStarted = (state == GameState.InGame ? "true" : "false");
         string response = "{"
             + "'status':'OK',"
+            + "'gameStarted':'" + isStarted + "',"
             + "'token':'" + players[ip].guid + "',"
             + "'name':'" + players[ip].name + "',"
             + "'points':" + players[ip].points
@@ -144,7 +151,12 @@ public class Game : MonoBehaviour {
     }
 
     public List<NetworkEnemyData> GetEnemies() {
+        //RefreshActiveEnemies();
         return new List<NetworkEnemyData>(players.Values);
     }
 
+    //private void RefreshActiveEnemies() {
+    //    List<string> activeSessions = SocketServer.instance.GetActiveSessions();
+    //    Debug.Log("active sessions " + activeSessions.Count);
+    //}
 }

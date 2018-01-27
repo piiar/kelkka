@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: f112698bc697f6c4f8dcfdfc81ca8acc
+timeCreated: 1517086775
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: bone_Antenna01
+    100002: bone_Antenna02
+    100004: bone_Head
+    100006: bone_L_Forearm
+    100008: bone_L_UpperArm
+    100010: bone_R_Forearm
+    100012: bone_R_UpperArm
+    100014: bone_Spine
+    100016: bone_Wheels
+    100018: //RootNode
+    100020: obj_Robo01_
+    100022: obj_Robo_Mobility_MetalTires01_
+    100024: obj_Robo_Mobility_RubberTires01_
+    100026: obj_Robo_Mobility_Tracks01_
+    100028: obj_Robo_Weapon_L_Baton01_
+    100030: obj_Robo_Weapon_L_CoilGun01_
+    100032: obj_Robo_Weapon_L_FThrower01_
+    100034: obj_Robo_Weapon_L_Shield01_
+    100036: obj_Robo_Weapon_R_Baton01_
+    100038: obj_Robo_Weapon_R_CoilGun01_
+    100040: obj_Robo_Weapon_R_FThrower01_
+    100042: obj_Robo_Weapon_R_Shield01_
+    400000: bone_Antenna01
+    400002: bone_Antenna02
+    400004: bone_Head
+    400006: bone_L_Forearm
+    400008: bone_L_UpperArm
+    400010: bone_R_Forearm
+    400012: bone_R_UpperArm
+    400014: bone_Spine
+    400016: bone_Wheels
+    400018: //RootNode
+    400020: obj_Robo01_
+    400022: obj_Robo_Mobility_MetalTires01_
+    400024: obj_Robo_Mobility_RubberTires01_
+    400026: obj_Robo_Mobility_Tracks01_
+    400028: obj_Robo_Weapon_L_Baton01_
+    400030: obj_Robo_Weapon_L_CoilGun01_
+    400032: obj_Robo_Weapon_L_FThrower01_
+    400034: obj_Robo_Weapon_L_Shield01_
+    400036: obj_Robo_Weapon_R_Baton01_
+    400038: obj_Robo_Weapon_R_CoilGun01_
+    400040: obj_Robo_Weapon_R_FThrower01_
+    400042: obj_Robo_Weapon_R_Shield01_
+    2100000: mtl_Robo01_Matte_
+    2100002: mtl_Robo01_Glow_
+    2100004: mtl_CoilGun_Zaps01_
+    2100006: mtl_Robo_Mobility_RubberTires01_
+    2100008: mtl_Robo01_Tracks01_
+    2100010: mtl_Robo_Mobility_MetalTires01_
+    4300000: obj_Robo01_
+    4300002: obj_Robo_Weapon_R_Baton01_
+    4300004: obj_Robo_Weapon_R_FThrower01_
+    4300006: obj_Robo_Weapon_R_CoilGun01_
+    4300008: obj_Robo_Weapon_R_Shield01_
+    4300010: obj_Robo_Mobility_RubberTires01_
+    4300012: obj_Robo_Mobility_Tracks01_
+    4300014: obj_Robo_Mobility_MetalTires01_
+    4300016: obj_Robo_Weapon_L_FThrower01_
+    4300018: obj_Robo_Weapon_L_CoilGun01_
+    4300020: obj_Robo_Weapon_L_Baton01_
+    4300022: obj_Robo_Weapon_L_Shield01_
+    7400000: IdleMoveLoop
+    7400002: MeleeAttack01
+    7400004: ShieldBlock
+    9500000: //RootNode
+    13700000: obj_Robo01_
+    13700002: obj_Robo_Mobility_MetalTires01_
+    13700004: obj_Robo_Mobility_RubberTires01_
+    13700006: obj_Robo_Mobility_Tracks01_
+    13700008: obj_Robo_Weapon_L_Baton01_
+    13700010: obj_Robo_Weapon_L_CoilGun01_
+    13700012: obj_Robo_Weapon_L_FThrower01_
+    13700014: obj_Robo_Weapon_L_Shield01_
+    13700016: obj_Robo_Weapon_R_Baton01_
+    13700018: obj_Robo_Weapon_R_CoilGun01_
+    13700020: obj_Robo_Weapon_R_FThrower01_
+    13700022: obj_Robo_Weapon_R_Shield01_
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_CoilGun_Zaps01_
+    second: {fileID: 2100000, guid: acd79b3c8af293c4a8c9ee1a7be1b8b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_Robo01_Glow_
+    second: {fileID: 2100000, guid: 8f0c1bbedd2500e4a8cdb5774330a2e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_Robo01_Matte_
+    second: {fileID: 2100000, guid: 4bee8281289ef264895bcbf52e994e13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_Robo01_Tracks01_
+    second: {fileID: 2100000, guid: 58d45abdcb5e3dd4fb74b227b281f75c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_Robo_Mobility_MetalTires01_
+    second: {fileID: 2100000, guid: c29798736df8d584a8f1ae58a2e8d134, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_Robo_Mobility_RubberTires01_
+    second: {fileID: 2100000, guid: 6b1919cbc5befcf41993e20731eab9a3, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

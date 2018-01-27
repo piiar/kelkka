@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class ProgressIndicator : MonoBehaviour {
-    private int max; 
+    private int max = 1;
     private int current; 
     
 	// Update is called once per frame
