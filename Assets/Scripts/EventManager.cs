@@ -41,7 +41,7 @@ public class EventManager : MonoBehaviour
             while (actionQueue.Count > 0)
             {
                 NetworkAction action = actionQueue[0];
-                TriggerEvent(action.target, action);
+                TriggerEvent("game", action);
                 actionQueue.RemoveAt(0);
             }
         }

@@ -3,29 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
 
-public class PlayerData
-{
-    public string ip;
-    public string sessionId;
-    public string guid;
-    public string name;
-    public int points = 0;
-
-    public PlayerData(string _ip, string _sessionId, string _guid, string _name) {
-        ip = _ip;
-        sessionId = _sessionId;
-        guid = _guid;
-        name = _name;
-    }
-}
+enum GameState {
+    Lobby,
+    InGame,
+    Finish
+};
 
 public class Game : MonoBehaviour {
 
     public GameObject enemyPrefab;
 
-    private Dictionary<string, PlayerData> players;
+    private Dictionary<string, NetworkEnemyData> players;
 
     public static Game instance = null;
+
+    private GameState state = GameState.Lobby;
 
     //Awake is always called before any Start functions
     void Awake()
@@ -42,7 +34,8 @@ public class Game : MonoBehaviour {
 
     void Start()
     {
-        players = new Dictionary<string, PlayerData>();
+        Application.runInBackground = true;
+        players = new Dictionary<string, NetworkEnemyData>();
         EventManager.StartListening("game", OnMessage);
     }
 
@@ -57,13 +50,41 @@ public class Game : MonoBehaviour {
     }
 
     void OnMessage(NetworkAction action) {
-        if (action.command == "joinGame") {
-            this.OnJoin(action);
+        JsonData data = JsonMapper.ToObject(action.data);
+
+        string command = data["command"].ToString();
+        switch (command) {
+            case "joinGame":
+                this.OnJoin(action);
+                break;
+            case "transmitRobot":
+                if (state != GameState.InGame) {
+                    SendError(action.senderSession, "Invalid game state");
+                }
+                else {
+                    this.OnAddRobot(action);
+                }
+                break;
+            default:
+                Debug.Log("Unrecognized command: " + command);
+                break;
         }
     }
 
-    void OnJoin(NetworkAction data) {
-        RegisterPlayer(data.args[0], data.args[1]);
+    void SendError(string session, string message) {
+        string msg = "{'status':'error','message':'" + message + "'}";
+        SocketServer.instance.SendMessage(session, msg);
+    }
+
+    void OnJoin(NetworkAction action) {
+        Debug.Log("OnJoin data " + action.data);
+        string ip = action.senderIp;
+        string session = action.senderSession;
+        RegisterPlayer(ip, session);
+    }
+
+    void OnAddRobot(NetworkAction action) {
+        Debug.Log("OnAddRobot " + action);
     }
 
     void RegisterPlayer(string ip, string sessionId) {
@@ -75,7 +96,7 @@ public class Game : MonoBehaviour {
             // new user
             System.Guid uid = System.Guid.NewGuid();
             string name = System.Guid.NewGuid().ToString().Substring(uid.ToString().Length - 4);
-            players.Add(ip, new PlayerData(ip, sessionId, uid.ToString(), name));
+            players.Add(ip, new NetworkEnemyData(ip, sessionId, uid.ToString(), name));
             createPlayer(ip);
         }
         string response = "{"
@@ -102,12 +123,18 @@ public class Game : MonoBehaviour {
     }
 
     public void StartGame() {
+        state = GameState.InGame;
         string message = "{'command':'startGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
     }
 
     public void StopGame() {
+        state = GameState.Lobby;
         string message = "{'command':'stopGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
+    }
+
+    public List<NetworkEnemyData> GetEnemies() {
+        return new List<NetworkEnemyData>(players.Values);
     }
 }

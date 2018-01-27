@@ -1,21 +1,78 @@
 fileFormatVersion: 2
 guid: 9427548b220cbd547b7fa1c89721cfbc
-timeCreated: 1517049409
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: mtl_Rman01_
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: Bip002
+    100002: Bip002 Head
+    100004: Bip002 L Calf
+    100006: Bip002 L Clavicle
+    100008: Bip002 L Finger0
+    100010: Bip002 L Foot
+    100012: Bip002 L Forearm
+    100014: Bip002 L Hand
+    100016: Bip002 L Thigh
+    100018: Bip002 L Toe0
+    100020: Bip002 L UpperArm
+    100022: Bip002 Neck
+    100024: Bip002 R Calf
+    100026: Bip002 R Clavicle
+    100028: Bip002 R Finger0
+    100030: Bip002 R Foot
+    100032: Bip002 R Forearm
+    100034: Bip002 R Hand
+    100036: Bip002 R Thigh
+    100038: Bip002 R Toe0
+    100040: Bip002 R UpperArm
+    100042: Bip002 Spine
+    100044: Hips
+    100046: //RootNode
+    100048: obj_Rman01_003
+    400000: Bip002
+    400002: Bip002 Head
+    400004: Bip002 L Calf
+    400006: Bip002 L Clavicle
+    400008: Bip002 L Finger0
+    400010: Bip002 L Foot
+    400012: Bip002 L Forearm
+    400014: Bip002 L Hand
+    400016: Bip002 L Thigh
+    400018: Bip002 L Toe0
+    400020: Bip002 L UpperArm
+    400022: Bip002 Neck
+    400024: Bip002 R Calf
+    400026: Bip002 R Clavicle
+    400028: Bip002 R Finger0
+    400030: Bip002 R Foot
+    400032: Bip002 R Forearm
+    400034: Bip002 R Hand
+    400036: Bip002 R Thigh
+    400038: Bip002 R Toe0
+    400040: Bip002 R UpperArm
+    400042: Bip002 Spine
+    400044: Hips
+    400046: //RootNode
+    400048: obj_Rman01_003
+    2100000: mtl_Rman01_Matte
+    2100002: mtl_Rman_Glow
     4300000: obj_Rman01_003
+    7400000: IdleLoop
+    7400002: run
+    7400004: MeleeAttack
+    7400006: ShieldBlock
+    9500000: //RootNode
+    13700000: obj_Rman01_003
+    2186277476908879412: ImportLogs
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: mtl_Rman01_
+      name: mtl_Rman01_Matte
+    second: {fileID: 2100000, guid: 52dd539268ce51a429d608cb70712c64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mtl_Rman_Glow
     second: {fileID: 2100000, guid: b451dd4d37242c849abb016ecc5c9844, type: 2}
   materials:
     importMaterials: 1
@@ -31,11 +88,75 @@ ModelImporter:
     rigImportErrors: 
     rigImportWarnings: 
     animationImportErrors: 
-    animationImportWarnings: 
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
+    animationImportWarnings: "\nClip 'IdleLoop' has import animation warnings that
+      might lower retargeting quality:\nNote: Activate translation DOF on avatar to
+      improve retargeting quality.\n\t'Bip002 L Thigh' has translation animation that
+      will be discarded.\n\t'Bip002 R Thigh' has translation animation that will be
+      discarded.\n\nClip 'run' has import animation warnings that might lower retargeting
+      quality:\nNote: Activate translation DOF on avatar to improve retargeting quality.\n\t'Bip002
+      L Thigh' has translation animation that will be discarded.\n\t'Bip002 R Thigh'
+      has translation animation that will be discarded.\n\nClip 'MeleeAttack' has
+      import animation warnings that might lower retargeting quality:\nNote: Activate
+      translation DOF on avatar to improve retargeting quality.\n\t'Bip002 Spine'
+      has translation animation that will be discarded.\n\t'Bip002 L Thigh' has translation
+      animation that will be discarded.\n\t'Bip002 R Thigh' has translation animation
+      that will be discarded.\n\nClip 'ShieldBlock' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Bip002 Spine' has translation animation
+      that will be discarded.\n\t'Bip002 L Thigh' has translation animation that will
+      be discarded.\n\t'Bip002 R Thigh' has translation animation that will be discarded.\n\t'Bip002
+      Neck' is inbetween humanoid transforms and has rotation animation that will
+      be discarded.\n\t'Bip002 L Clavicle' has translation animation that will be
+      discarded.\n\t'Bip002 R Clavicle' has translation animation that will be discarded.\n"
+    animationRetargetingWarnings: "\nRetargeting quality report for clip 'IdleLoop':\n\tLeftLowerLeg
+      average position error 16.0 mm and maximum position error 32.0 mm at time 1:15
+      (51.0%) Frame 45\n\tLeftFoot average position error 16.0 mm and maximum position
+      error 32.0 mm at time 1:15 (51.0%) Frame 45\n\tRightLowerLeg average position
+      error 25.1 mm and maximum position error 96.0 mm at time 1:15 (51.0%) Frame
+      45\n\tRightFoot average position error 17.4 mm and maximum position error 36.9
+      mm at time 1:15 (51.0%) Frame 45\n\tLeftFoot average orientation error 5.5 deg
+      and maximum orientation error 7.3 deg at time 1:13 (46.9%) Frame 43\n\tRightFoot
+      average orientation error 3.8 deg and maximum orientation error 6.4 deg at time
+      1:16 (53.1%) Frame 46\n\nRetargeting quality report for clip 'run':\n\tLeftLowerLeg
+      average position error 23.9 mm and maximum position error 51.5 mm at time 4:
+      0 (67.8%) Frame 120\n\tLeftFoot average position error 23.3 mm and maximum position
+      error 51.5 mm at time 3:10 (33.9%) Frame 100\n\tRightLowerLeg average position
+      error 23.3 mm and maximum position error 51.9 mm at time 4: 0 (67.8%) Frame
+      120\n\tRightFoot average position error 23.2 mm and maximum position error 51.6
+      mm at time 4: 0 (67.8%) Frame 120\n\tLeftFoot average orientation error 1.5
+      deg and maximum orientation error 8.4 deg at time 3: 4 (23.7%) Frame 94\n\tRightFoot
+      average orientation error 1.4 deg and maximum orientation error 7.7 deg at time
+      4: 3 (74.6%) Frame 123\n\nRetargeting quality report for clip 'MeleeAttack':\n\tLeftLowerLeg
+      average position error 215.5 mm and maximum position error 467.1 mm at time
+      5:14 (77.8%) Frame 164\n\tLeftFoot average position error 215.5 mm and maximum
+      position error 467.2 mm at time 5:14 (77.8%) Frame 164\n\tRightLowerLeg average
+      position error 176.4 mm and maximum position error 362.1 mm at time 5:11 (61.1%)
+      Frame 161\n\tRightFoot average position error 164.4 mm and maximum position
+      error 357.9 mm at time 5:14 (77.8%) Frame 164\n\tRightLowerArm average position
+      error 0.5 mm and maximum position error 1.4 mm at time 5:12 (66.7%) Frame 162\n\tLeftFoot
+      average orientation error 3.4 deg and maximum orientation error 3.4 deg at time
+      5:17 (100.0%) Frame 167\n\tRightFoot average orientation error 2.4 deg and maximum
+      orientation error 3.4 deg at time 5:16 (94.4%) Frame 166\n\nRetargeting quality
+      report for clip 'ShieldBlock':\n\tLeftLowerLeg average position error 22.4 mm
+      and maximum position error 38.4 mm at time 5:24 (125.0%) Frame 174\n\tLeftFoot
+      average position error 22.4 mm and maximum position error 38.4 mm at time 5:23
+      (100.0%) Frame 173\n\tRightLowerLeg average position error 22.4 mm and maximum
+      position error 38.4 mm at time 5:24 (125.0%) Frame 174\n\tRightFoot average
+      position error 22.4 mm and maximum position error 38.4 mm at time 5:24 (125.0%)
+      Frame 174\n\tLeftLowerArm average position error 13.5 mm and maximum position
+      error 25.1 mm at time 5:24 (125.0%) Frame 174\n\tLeftHand average position error
+      33.2 mm and maximum position error 62.9 mm at time 5:24 (125.0%) Frame 174\n\tRightLowerArm
+      average position error 16.3 mm and maximum position error 31.0 mm at time 5:24
+      (125.0%) Frame 174\n\tRightHand average position error 42.7 mm and maximum position
+      error 80.2 mm at time 5:24 (125.0%) Frame 174\n\tHead average position error
+      87.9 mm and maximum position error 149.2 mm at time 5:24 (125.0%) Frame 174\n\tLeftFoot
+      average orientation error 1.2 deg and maximum orientation error 3.4 deg at time
+      5:19 (0.0%) Frame 169\n\tRightFoot average orientation error 6.8 deg and maximum
+      orientation error 9.1 deg at time 5:23 (100.0%) Frame 173\n"
+    animationDoRetargetingWarnings: 1
     importAnimatedCustomProperties: 0
-    animationCompression: 1
+    importConstraints: 0
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -75,8 +196,269 @@ ModelImporter:
   copyAvatar: 0
   humanDescription:
     serializedVersion: 2
-    human: []
-    skeleton: []
+    human:
+    - boneName: Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Bip002 R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: obj_Rman01_(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip002
+      parentName: obj_Rman01_(Clone)
+      position: {x: -0, y: 0.44035164, z: 0}
+      rotation: {x: -0.50000036, y: 0.49999967, z: 0.49999967, w: 0.50000036}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Hips
+      parentName: Bip002
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.5, y: 0.5, z: 0.49999934, w: 0.50000066}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Bip002 Spine
+      parentName: Hips
+      position: {x: -0.13322368, y: -0.0004796522, z: 0.00000018541978}
+      rotation: {x: -0.0000020861628, y: -0, z: -0.0003974438, w: 0.99999994}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: Bip002 L Thigh
+      parentName: Bip002 Spine
+      position: {x: 0.13322327, y: 0.0005851658, z: 0.21412598}
+      rotation: {x: -0.13556536, y: 0.9803676, z: -0.026364136, w: 0.14073533}
+      scale: {x: 0.9999999, y: 1, z: 1}
+    - name: Bip002 L Calf
+      parentName: Bip002 L Thigh
+      position: {x: -0.1734976, y: -0.000000009536743, z: 0}
+      rotation: {x: 0.000000006768328, y: 0.0000000031146212, z: 0.41803747, w: 0.9084298}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: Bip002 L Foot
+      parentName: Bip002 L Calf
+      position: {x: -0.17349765, y: 0, z: 0.000000038146972}
+      rotation: {x: -0.060059145, y: -0.11111994, z: -0.053884853, w: -0.990526}
+      scale: {x: 1.000001, y: 1.0000004, z: 1.0000007}
+    - name: Bip002 L Toe0
+      parentName: Bip002 L Foot
+      position: {x: -0.13322346, y: 0.17145297, z: 0}
+      rotation: {x: 0.000000026692453, y: -0.00000023742665, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: Bip002 Neck
+      parentName: Bip002 Spine
+      position: {x: -0.64187163, y: -0.00010061294, z: -2.7906025e-10}
+      rotation: {x: -3.0117673e-14, y: 0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip002 L Clavicle
+      parentName: Bip002 Neck
+      position: {x: 0.09192131, y: 0.00014204248, z: 0.20024303}
+      rotation: {x: 0.7071077, y: 0.00028152892, z: -0.70710576, w: 0.0002815297}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip002 L UpperArm
+      parentName: Bip002 L Clavicle
+      position: {x: -0.15060054, y: -1.8189894e-14, z: 0}
+      rotation: {x: 0.30077183, y: -0.007293425, z: -0.00870648, w: 0.95362854}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: Bip002 L Forearm
+      parentName: Bip002 L UpperArm
+      position: {x: -0.23890416, y: 0, z: 0}
+      rotation: {x: -0.17075528, y: 0.01460992, z: 0.021368429, w: 0.9849734}
+      scale: {x: 1.0000005, y: 1.0000014, z: 1.0000005}
+    - name: Bip002 L Hand
+      parentName: Bip002 L Forearm
+      position: {x: -0.4682446, y: 0, z: 0.000000076293944}
+      rotation: {x: -0.7068252, y: 8.390228e-12, z: 0.000000021073422, w: 0.7073883}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: Bip002 L Finger0
+      parentName: Bip002 L Hand
+      position: {x: -0.14480816, y: 0, z: 0}
+      rotation: {x: -0.00039815906, y: 0.0000000149011585, z: 5.9330314e-12, w: 0.99999994}
+      scale: {x: 1.0000001, y: 1, z: 1.0000001}
+    - name: Bip002 R Clavicle
+      parentName: Bip002 Neck
+      position: {x: 0.09192131, y: 0.00014315329, z: -0.20024303}
+      rotation: {x: 0.7071077, y: 0.00028152892, z: 0.70710576, w: -0.0002815297}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip002 R UpperArm
+      parentName: Bip002 R Clavicle
+      position: {x: -0.15060054, y: 7.2759575e-14, z: 0}
+      rotation: {x: -0.29181072, y: 0.00789886, z: -0.008777334, w: 0.95640326}
+      scale: {x: 0.9999998, y: 1, z: 1.0000001}
+    - name: Bip002 R Forearm
+      parentName: Bip002 R UpperArm
+      position: {x: -0.23890418, y: 0.000000038146972, z: 0}
+      rotation: {x: 0.16693413, y: -0.015981045, z: 0.021976046, w: 0.9855936}
+      scale: {x: 1.0000018, y: 1.0000014, z: 1.000001}
+    - name: Bip002 R Hand
+      parentName: Bip002 R Forearm
+      position: {x: -0.46824446, y: 0.000000038146972, z: -0.000000076293944}
+      rotation: {x: 0.7068252, y: -0.000000010540907, z: 0.000000010532516, w: 0.7073883}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: Bip002 R Finger0
+      parentName: Bip002 R Hand
+      position: {x: -0.14480816, y: 0, z: 0}
+      rotation: {x: 0.0003981516, y: -0.00000001490116, z: 5.9329213e-12, w: 0.99999994}
+      scale: {x: 1, y: 0.99999994, z: 0.9999998}
+    - name: Bip002 Head
+      parentName: Bip002 Neck
+      position: {x: -0.11155532, y: -0.000019644349, z: -5.448555e-11}
+      rotation: {x: 0.000000029802292, y: -0.00000067055225, z: -0.00039818883, w: -1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip002 R Thigh
+      parentName: Bip002 Spine
+      position: {x: 0.13322327, y: 0.00058635365, z: -0.21412598}
+      rotation: {x: -0.13556555, y: 0.98036754, z: 0.026366808, w: -0.14073478}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: Bip002 R Calf
+      parentName: Bip002 R Thigh
+      position: {x: -0.17349757, y: 0.000000009536743, z: 0}
+      rotation: {x: -0.00000000622924, y: 0.000000013536661, z: 0.4180372, w: 0.9084299}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Bip002 R Foot
+      parentName: Bip002 R Calf
+      position: {x: -0.17349762, y: -0.0000000047683715, z: 0}
+      rotation: {x: 0.060059056, y: 0.11111984, z: -0.053884827, w: -0.99052596}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999998}
+    - name: Bip002 R Toe0
+      parentName: Bip002 R Foot
+      position: {x: -0.13322346, y: 0.17145295, z: -0.000000019073486}
+      rotation: {x: 0.000000036527716, y: -0.00000012082135, z: -0.7071068, w: 0.7071068}
+      scale: {x: 1, y: 0.99999994, z: 0.99999994}
+    - name: obj_Rman01_003
+      parentName: obj_Rman01_(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -84,13 +466,13 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: Bip002
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 3
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
