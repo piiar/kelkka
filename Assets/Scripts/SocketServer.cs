@@ -35,9 +35,18 @@ public class GameSocketBehavior : WebSocketBehavior
         }
 
         string userIp = Context.UserEndPoint.Address.ToString();
-
         EventManager.AddNetworkEvent(new NetworkAction(userIp, ID, e.Data));
-        //List<string> ids = this.Sessions.ActiveIDs.ToList();
+        List<string> ids = this.Sessions.ActiveIDs.ToList();
+    }
+
+    protected override void OnError(ErrorEventArgs e) {
+        Debug.Log("GameSocket OnError " + e.Message + " from " + Context.UserEndPoint);
+    }
+
+    protected override void OnClose(CloseEventArgs e) {
+        Debug.Log("GameSocket OnClose " + Context.UserEndPoint);
+        string userIp = Context.UserEndPoint.Address.ToString();
+        EventManager.AddNetworkEvent(new NetworkAction(userIp, ID, "'command':'disconnect'"));
     }
 }
 
@@ -114,4 +123,18 @@ public class SocketServer : MonoBehaviour
             }
         }
     }
+
+
+    // not reliable!
+    public List<string> GetActiveSessions() {
+        WebSocketServiceHost host = null;
+        wssv.WebSocketServices.TryGetServiceHost("/", out host);
+        if (host != null)
+        {
+            List<string> list = host.Sessions.ActiveIDs.ToList();
+            return list;
+        }
+        return new List<string>();
+    }
+
 }

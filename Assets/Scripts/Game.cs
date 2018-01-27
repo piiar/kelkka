@@ -65,6 +65,9 @@ public class Game : MonoBehaviour {
             case "joinGame":
                 this.OnJoin(action);
                 break;
+            case "disconnect":
+                this.OnDisconnect(action);
+                break;
             case "transmitRobot":
                 if (state != GameState.InGame) {
                     SendError(action.senderSession, "Invalid game state");
@@ -90,6 +93,11 @@ public class Game : MonoBehaviour {
         string session = action.senderSession;
         RegisterPlayer(ip, session);
         playerListChanged.Invoke(GetEnemies());
+    }
+
+    void OnDisconnect(NetworkAction action) {
+        players.Remove(action.senderIp);
+        playerListChanged.Invoke((GetEnemies()));
     }
 
     void OnAddRobot(NetworkAction action) {
@@ -138,4 +146,5 @@ public class Game : MonoBehaviour {
     public List<NetworkEnemyData> GetEnemies() {
         return new List<NetworkEnemyData>(players.Values);
     }
+
 }
