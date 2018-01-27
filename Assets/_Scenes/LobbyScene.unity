@@ -478,12 +478,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224416914481326094, guid: 5ddeeb5e9bb1d47478ecb7256c091c35,
     type: 2}
   m_PrefabInternal: {fileID: 682434151}
---- !u!114 &249441018 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114982402528292954, guid: 5ddeeb5e9bb1d47478ecb7256c091c35,
-    type: 2}
-  m_PrefabInternal: {fileID: 682434151}
-  m_Script: {fileID: 11500000, guid: 7abe7d2e7d26a4c0fb02a88444f14794, type: 3}
 --- !u!1 &269389460
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,6 +694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb969e620a9f4b49a742a8cdb60e2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerList: {fileID: 1791000471}
 --- !u!4 &385873970
 Transform:
   m_ObjectHideFlags: 0
@@ -839,6 +834,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1749567268256578, guid: fbc808b5b4e2f47f3acc6a63d4af20ec,
     type: 2}
+  playerListChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 385873969}
+        m_MethodName: PlayerListChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: PlayerEvent, Assembly-CSharp, Version=1.0.2.33797, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &621904694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,7 +1574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26966337a6b8b4df082f38434a3f1571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerListItemPrefab: {fileID: 249441018}
+  playerListItemPrefab: {fileID: 114982402528292954, guid: 5ddeeb5e9bb1d47478ecb7256c091c35,
+    type: 2}
 --- !u!222 &1791000475
 CanvasRenderer:
   m_ObjectHideFlags: 0
