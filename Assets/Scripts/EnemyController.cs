@@ -10,6 +10,8 @@ public class EnemyController : MonoBehaviour {
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
 
+    public int health = 30;
+
     // Use this for initialization
     void Start() {
         controller = GetComponent<CharacterController>();
@@ -22,6 +24,15 @@ public class EnemyController : MonoBehaviour {
     void OnDestroy() {
         if (userId != null) {
             EventManager.StopListening(userId, OnMessage);
+        }
+    }
+
+    public void AddDamage(int damage) {
+        health -= damage;
+
+        if(health <= 0) {
+            // TODO
+            print("died");
         }
     }
 

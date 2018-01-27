@@ -2,11 +2,8 @@
 
 public class WeaponHandler : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
+    public int damage = 10;
+
 	// Update is called once per frame
 	void OnTriggerEnter (Collider collider) {
         if(collider.CompareTag("Obstacle")) {
@@ -17,5 +14,10 @@ public class WeaponHandler : MonoBehaviour {
             Vector3 hitDir = new Vector3(transform.forward.x, 0, transform.forward.z);
             body.velocity = hitDir * 12f;
         }
-	}
+
+        if(collider.CompareTag("Enemy")) {
+            EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
+            enemy.AddDamage(damage);
+        }
+    }
 }

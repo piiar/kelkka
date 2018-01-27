@@ -17,8 +17,8 @@ public class PlayerController : MonoBehaviour {
     private float lookAngle = 0f;
     private CharacterController controller;
     public ParticleSystem dustEmitter;
-    public Collider weaponCollider;
-
+    public GameObject weapon;
+    public GameObject shield;
     [Range(5f, 25f)]public float moveSpeed = 15f;
     private float velocity = 0f;
 
@@ -26,7 +26,8 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        weaponCollider.gameObject.SetActive(false);
+        weapon.SetActive(false);
+        shield.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,10 +39,13 @@ public class PlayerController : MonoBehaviour {
         
         bool jumpBtn = Input.GetButtonDown("Jump");
         isAttacking = Input.GetButtonDown("Fire1");
-        isBlocking = Input.GetButtonDown("Fire3");
+        isBlocking = Input.GetButtonDown("Fire2");
 
         if(isAttacking) {
-            SetWeaponColliderActive(true);
+            SetWeaponActive(true);
+        }
+        else if(isBlocking) {
+            SetShieldActive(true);
         }
 
         moveDirection = new Vector3(h, 0f, v);
@@ -75,7 +79,10 @@ public class PlayerController : MonoBehaviour {
 
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(1);
         if(state.IsName("AttackMelee") && state.normalizedTime >= 1f) {
-            SetWeaponColliderActive(false);
+            SetWeaponActive(false);
+        }
+        else if(state.IsName("Block") && state.normalizedTime >= 1f) {
+            SetShieldActive(false);
         }
     }
 
@@ -105,7 +112,11 @@ public class PlayerController : MonoBehaviour {
         body.velocity = pushDir * 2f;
     }
 
-    void SetWeaponColliderActive(bool enabled) {
-        weaponCollider.gameObject.SetActive(enabled);
+    void SetWeaponActive(bool enabled) {
+        weapon.SetActive(enabled);
+    }
+
+    void SetShieldActive(bool enabled) {
+        shield.SetActive(enabled);
     }
 }
