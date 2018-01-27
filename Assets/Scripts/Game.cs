@@ -81,7 +81,9 @@ public class Game : MonoBehaviour {
     }
 
     private void createPlayer(string ip) {
-        Debug.Log("createPlayer " + ip);
+        if (enemyPrefab == null) {
+            throw new UnityException("Enemy prefab is missing!");
+        }
         GameObject obj = Instantiate(enemyPrefab) as GameObject;
         EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
