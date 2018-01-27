@@ -100,8 +100,13 @@ public class Game : MonoBehaviour {
         playerListChanged.Invoke((GetEnemies()));
     }
 
-    void OnAddRobot(NetworkAction action) {
+    void OnAddRobot(NetworkAction action)
+    {
         Debug.Log("OnAddRobot " + action);
+        string name = players[action.senderIp].name;
+        JsonData data = JsonMapper.ToObject(action.data);
+        JsonData robotStructure = data["robot"];
+        EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure);
     }
 
     void RegisterPlayer(string ip, string sessionId) {
