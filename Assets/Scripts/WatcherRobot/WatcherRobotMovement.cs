@@ -3,7 +3,8 @@ using UnityEngine.AI;
 
 public enum AiMode {
     Aggressive,
-    Flank
+    Flanking,
+    Objective
 }
 
 public class WatcherRobotMovement : MonoBehaviour {
@@ -13,16 +14,17 @@ public class WatcherRobotMovement : MonoBehaviour {
 
     private static float flankRadius = 4.0f;
 
-    private Transform target;
+    public Transform target;
     private float thinkCounter;
     private NavMeshAgent agent;
-    private AiMode aiMode = AiMode.Flank;
+    //private AiMode aiMode = AiMode.Flank;
 
     private int flankDirection = 1; // or -1. Can be randomized
 
     void Start() {
         thinkCounter = Random.Range(0, thinkCounterMax);
         agent = GetComponent<NavMeshAgent>();
+        this.target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update() {
@@ -43,11 +45,14 @@ public class WatcherRobotMovement : MonoBehaviour {
         float distanceToTarget = Vector2.Distance(a, b);
 
         // Invoke the currently selected ai routine
-        if (aiMode == AiMode.Aggressive) {
+        if (FindAiType() == AiMode.Aggressive) {
             modeAggressive(distanceToTarget);
         }
-        else if (aiMode == AiMode.Flank) {
+        else if (FindAiType() == AiMode.Flanking) {
             modeFlank(distanceToTarget);
+        }
+        else if(FindAiType() == AiMode.Aggressive) {
+            modeAggressive(distanceToTarget);
         }
     }
 
@@ -119,5 +124,15 @@ public class WatcherRobotMovement : MonoBehaviour {
 
     public void SetMovementTarget(Transform target) {
         this.target = target;
+    }
+
+    private AiMode FindAiType()
+    {
+        return GetComponent<EnemyController>().GetAIMode();
+    }
+
+    private float GetMovespeedEquipmentModifier()
+    {
+        return GetComponent<EnemyController>().MoveSpeed();
     }
 }

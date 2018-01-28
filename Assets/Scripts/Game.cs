@@ -26,6 +26,8 @@ public class Game : MonoBehaviour {
 
     private GameState state = GameState.Lobby;
 
+    public HudController Hud { get; private set; }
+
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -45,6 +47,8 @@ public class Game : MonoBehaviour {
     {
         Application.runInBackground = true;
         EventManager.StartListening("game", OnMessage);
+
+        Hud = FindObjectOfType<HudController>();
     }
 
     void OnDisable()
@@ -74,6 +78,16 @@ public class Game : MonoBehaviour {
                 }
                 else {
                     this.OnAddRobot(action);
+                }
+                break;
+            case "changeRobot":
+                if (state != GameState.InGame)
+                {
+                    SendError(action.senderSession, "Invalid game state");
+                }
+                else
+                {
+                    this.OnChangeRobot(action);
                 }
                 break;
             default:
@@ -106,7 +120,22 @@ public class Game : MonoBehaviour {
         string name = players[action.senderIp].name;
         JsonData data = JsonMapper.ToObject(action.data);
         JsonData robotStructure = data["robot"];
+        Debug.Log("RoboStruct : " + robotStructure.ToString());
         EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure);
+    }
+
+    void OnChangeRobot(NetworkAction action)
+    {
+        Debug.Log("OnChangeRobot");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies) {
+            EnemyController ctrl = enemy.GetComponent<EnemyController>();
+            if (ctrl.userId == action.senderIp) {
+                Debug.Log("Found robot " + action.senderIp);
+                ctrl.ChangeRobot(action);
+                break;
+            }
+        }
     }
 
     void RegisterPlayer(string ip, string sessionId) {
@@ -153,6 +182,10 @@ public class Game : MonoBehaviour {
     public List<NetworkEnemyData> GetEnemies() {
         //RefreshActiveEnemies();
         return new List<NetworkEnemyData>(players.Values);
+    }
+
+    public NetworkEnemyData GetEnemy(string id) {
+        return players[id];
     }
 
     //private void RefreshActiveEnemies() {

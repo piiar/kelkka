@@ -1,25 +1,36 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
+using LitJson;
 
 public class EnemyController : MonoBehaviour {
 
-    private string userId = null;
+    public string userId { get; private set; }
     private string userName = null;
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
     private int health = 30;
 
-        public ParticleSystem sparkEmitter;
+    public int speedClass; //Bottom -- 20*modifier 
+    public Weapon weapon_left;
+    public Weapon weapon_right;
+    private AiMode aiMode;
+
+    public ParticleSystem sparkEmitter;
+
+    public GameObject rubberWheels;
+    public GameObject trackWheels;
+    public GameObject metallicWheels;
+
+    public GameObject shieldLeft;
+    public GameObject flamerLeft;
+    public GameObject zapperLeft;
+
+    public GameObject shieldRight;
+    public GameObject flamerRight;
+    public GameObject zapperRight;
 
     // Use this for initialization
-    void Start() {
+    void Start() {   
         controller = GetComponent<CharacterController>();
-    }
-
-    void FixedUpdate() {
-        //controller.Move(movement);
     }
 
     void OnDestroy() {
@@ -52,5 +63,103 @@ public class EnemyController : MonoBehaviour {
 
     void OnMessage(NetworkAction message) {
         Debug.Log("player " + userId + " got message " + message);
+    }
+
+    public void InitEquipment(int top, int bottom, int left, int right)
+    {
+        weapon_left = weaponLeft(left);
+        weapon_right = weaponRight(right);
+        aiMode = aiFor(top);
+
+        /*if (aiMode == AiMode.Aggressive || aiMode == AiMode.Flanking)
+        {
+            GetComponent<WatcherRobotMovement>().SetMovementTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        }
+        */
+        //movement
+        setupWheels(bottom);
+    }
+
+    private Weapon weaponLeft(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                shieldLeft.SetActive(true);
+                return new Weapon("Shield", 0);
+            case 1:
+                flamerLeft.SetActive(true);
+                return new Weapon("FlameThrower", 10);
+            default:
+                zapperLeft.SetActive(true);
+                return new Weapon("Zap", 20);
+        }
+    }
+
+    private Weapon weaponRight(int i) {
+        switch(i) {
+            case 0:
+                shieldRight.SetActive(true);
+                return new Weapon("Shield", 0);
+            case 1:
+                flamerRight.SetActive(true);
+                return new Weapon("FlameThrower", 10);
+            default:
+                zapperRight.SetActive(true);
+                return new Weapon("Zap", 20);
+        }
+    }
+
+    private void setupWheels(int i) {
+        speedClass = i;
+        switch(i) {
+            case 0:
+                metallicWheels.SetActive(true);
+                break;
+            case 1:
+                trackWheels.SetActive(true);
+                break;
+            default:
+                rubberWheels.SetActive(true);
+                break;
+        }
+    }
+
+    private AiMode aiFor(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return AiMode.Aggressive; 
+            case 1:
+                return AiMode.Flanking;
+            default:
+                return AiMode.Objective;
+        }
+    }
+
+    public AiMode GetAIMode()
+    {
+        return aiMode;
+    }
+
+    public float MoveSpeed()
+    {
+        switch (speedClass)
+        {
+            case 0:
+                return 1.0f;
+            case 1:
+                return 1.3f;
+            default:
+                return 1.5f;
+        }
+    }
+
+    public void ChangeRobot(NetworkAction action) {
+        JsonData data = JsonMapper.ToObject(action.data);
+        JsonData robotStructure = data["robot"];
+        Debug.Log("RoboStruct : " + robotStructure.ToString());
+        // TODO
     }
 }
