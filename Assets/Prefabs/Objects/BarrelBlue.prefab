@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4725350562968780}
   - component: {fileID: 136268911621221588}
   - component: {fileID: 54984194848837546}
+  - component: {fileID: 208924551567345180}
   m_Layer: 0
   m_Name: BarrelBlue
   m_TagString: Obstacle
@@ -85,7 +86,6 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 65682fd98a26a6f44a0867eaf70622e1, type: 2}
   m_StaticBatchInfo:
@@ -142,3 +142,18 @@ CapsuleCollider:
   m_Height: 2.45
   m_Direction: 1
   m_Center: {x: 0, y: 0.82, z: 0}
+--- !u!208 &208924551567345180
+NavMeshObstacle:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1158744140502912}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
