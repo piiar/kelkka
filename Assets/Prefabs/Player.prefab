@@ -1085,6 +1085,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76bacc580c182d49b4760e1128396f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skinnedMeshRenderer: {fileID: 0}
+  trailRenderer: {fileID: 0}
+  col: {fileID: 0}
   damage: 10
 --- !u!114 &114539422463559004
 MonoBehaviour:
