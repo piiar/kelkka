@@ -30,24 +30,34 @@ public class PlayerController : MonoBehaviour {
         controller = GetComponent<CharacterController>();
         weapon.Shrink();
         shield.SetActive(false);
+
+        timeStamp = Time.time + 0.3f;
     }
 
     // Update is called once per frame
     float verticalSpeed = 0f;
+    float timeStamp;
     void Update () {
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
         float mouseX = Input.GetAxis("Mouse X");
         
         bool jumpBtn = Input.GetButtonDown("Jump");
-        isAttacking = Input.GetButtonDown("Fire1");
         isBlocking = Input.GetButtonDown("Fire2");
 
-        if(isAttacking) {
-            weapon.Extend();
+        if(Input.GetButtonDown("Fire1")) {
+            if(timeStamp <= Time.time) {
+                isAttacking = true;
+                timeStamp = Time.time + 0.5f;
+                weapon.Extend();
+            }
         }
-        else if(isBlocking) {
-            SetShieldActive(true);
+        else if(Input.GetButtonDown("Fire2")) {
+            if(timeStamp <= Time.time) {
+                isBlocking = true;
+                timeStamp = Time.time + 0.5f;
+                SetShieldActive(true);
+            }      
         }
 
         moveDirection = new Vector3(h, 0f, v);

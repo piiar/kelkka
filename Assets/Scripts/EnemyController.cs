@@ -19,7 +19,7 @@ public class EnemyController : MonoBehaviour {
 
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
-    private int health = 30;
+    [SerializeField]private int health = 30;
 
     public int speedClass; //Bottom -- 20*modifier 
     public Weapon weapon_left;
@@ -90,6 +90,7 @@ public class EnemyController : MonoBehaviour {
         //sparkEmitter.Emit(10);
 
         if (health <= 0) {
+            print("adfdsafdsaf");
             NetworkEnemyData player = Game.instance.GetEnemy(userId);
             SocketServer.instance.SendMessage(player.sessionId, "{'command':'stopGame'}");
             Destroy(gameObject);

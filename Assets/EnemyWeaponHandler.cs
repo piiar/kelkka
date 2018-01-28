@@ -8,7 +8,7 @@ public class EnemyWeaponHandler : MonoBehaviour {
 
     void OnTriggerEnter(Collider collider) {
         if(collider.CompareTag("Player")) {
-            print("smash");
+            print("enemy: smash");
             PlayerController enemy = collider.gameObject.GetComponent<PlayerController>();
             enemy.AddDamage(damage, enemy.transform.position - transform.position);
 

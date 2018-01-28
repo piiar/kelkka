@@ -17,22 +17,19 @@ public class WeaponHandler : MonoBehaviour {
 
 	// Update is called once per frame
 	void OnTriggerEnter (Collider collider) {
-        if(timeStamp <= Time.time) {
-            timeStamp = Time.time + 0.3f;
-            if(collider.CompareTag("Obstacle")) {
-                Rigidbody body = collider.attachedRigidbody;
-                if(body == null || body.isKinematic) {
-                    return;
-                }
-                Vector3 hitDir = new Vector3(transform.forward.x, 0, transform.forward.z);
-                body.velocity = hitDir * 12f;
+        if(collider.CompareTag("Obstacle")) {
+            Rigidbody body = collider.attachedRigidbody;
+            if(body == null || body.isKinematic) {
+                return;
             }
+            Vector3 hitDir = new Vector3(transform.forward.x, 0, transform.forward.z);
+            body.velocity = hitDir * 12f;
+        }
 
-            if(collider.CompareTag("Enemy")) {
-                print("smash");
-                EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
-                enemy.AddDamage(damage, enemy.transform.position - transform.position);
-            }
+        if(collider.CompareTag("Enemy")) {
+            print("player: smash");
+            EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
+            enemy.AddDamage(10, enemy.transform.position - transform.position);
         }
     }
 
