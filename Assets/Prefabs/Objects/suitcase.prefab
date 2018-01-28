@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4993985952684722}
   - component: {fileID: 114225803564688094}
   - component: {fileID: 65645637924727458}
-  - component: {fileID: 54051646105606662}
+  - component: {fileID: 54446293112114392}
   m_Layer: 0
   m_Name: suitcase
   m_TagString: Untagged
@@ -115,7 +115,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1663387452072016}
   m_Mesh: {fileID: 4300000, guid: 76cfe677fa6fb41f8a71f46266e0ce33, type: 3}
---- !u!54 &54051646105606662
+--- !u!54 &54446293112114392
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

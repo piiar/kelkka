@@ -128,8 +128,7 @@ public class PlayerController : MonoBehaviour {
             //sparkEmitter.Emit(10);
 
             if(health <= 0) {
-                // TODO
-                print("died");
+                Game.instance.StopGame();
             }
         }
     }
