@@ -17,15 +17,14 @@ public class MoneyCase : MonoBehaviour {
         if (player != null) {
             string msg = "{'money':" + amount + "}";
             SocketServer.instance.SendMessage(player.sessionId, msg);
-            //startMoneyTotal -= amount;
+            MoneyManager.instance.SpendMoney(amount);
         }
     }
 
     void OnTriggerEnter(Collider collider) {
-        if(collider.CompareTag("Enemy")) {
-            // TODO: do something?
+        if (collider.CompareTag("Enemy")) {
             EnemyController enemy = collider.transform.GetComponent<EnemyController>();
-            //string id = enemy.userId;
+            MakeTransactionTo(enemy.userId, money);
             Destroy(gameObject);
         }
     }

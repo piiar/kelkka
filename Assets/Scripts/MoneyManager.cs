@@ -6,6 +6,7 @@ using LitJson;
 
 public class MoneyManager : MonoBehaviour
 {
+    public int moneyTotal { get; private set; }
 
     public GameObject suitcasePrefab;
 
@@ -32,7 +33,7 @@ public class MoneyManager : MonoBehaviour
         {
             throw new UnityException("Suitcase prefab is missing!");
         }
-
+        moneyTotal = 0;
         GameObject[] spawns = GameObject.FindGameObjectsWithTag("suitcase");
         foreach (GameObject obj in spawns) {
             CreateSuitcase(obj.transform.position);
@@ -50,6 +51,11 @@ public class MoneyManager : MonoBehaviour
         MoneyCase suitcase = obj.GetComponent<MoneyCase>();
         suitcase.transform.position = spawnPosition;
         suitcase.InitMoneyCase(250);
+        moneyTotal += 250;
+    }
+
+    public void SpendMoney(int amount) {
+        moneyTotal -= amount;
     }
 
 }
