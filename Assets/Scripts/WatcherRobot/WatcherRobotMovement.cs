@@ -14,7 +14,7 @@ public class WatcherRobotMovement : MonoBehaviour {
 
     private static float flankRadius = 4.0f;
 
-    private Transform target;
+    public Transform target;
     private float thinkCounter;
     private NavMeshAgent agent;
     //private AiMode aiMode = AiMode.Flank;

@@ -70,6 +70,11 @@ public class EnemyController : MonoBehaviour {
         weapon_right = weaponRight(right);
         aiMode = aiFor(top);
 
+        /*if (aiMode == AiMode.Aggressive || aiMode == AiMode.Flanking)
+        {
+            GetComponent<WatcherRobotMovement>().SetMovementTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        }
+        */
         //movement
         setupWheels(bottom);
     }
