@@ -15,7 +15,7 @@ public class SpawnArea : MonoBehaviour {
         }
     }
 
-    private Vector3 GenerateRandomPoint()
+    public Vector3 GenerateRandomPoint()
     {
         Vector3 rndPosWithin;
         rndPosWithin = RandomPointInBox(this.transform.position, this.transform.localScale);
