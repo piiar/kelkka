@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour {
 
     public static EnemyManager instance = null;
 
+    public SpawnPointGenerator spawnPointGenerator;
     //Awake is always called before any Start functions
     void Awake()
     {
@@ -41,7 +42,9 @@ public class EnemyManager : MonoBehaviour {
             throw new UnityException("Enemy prefab is missing!");
         }
         Debug.Log("creating player " + name);
-        GameObject obj = Instantiate(enemyPrefab) as GameObject;
+        //GameObject obj = Instantiate(enemyPrefab) as GameObject;
+        GameObject obj = Instantiate(enemyPrefab, spawnPointGenerator.RandomSpawnPoint(), Quaternion.identity) as GameObject;
+        //obj.transform.position = spawnPointGenerator.RandomSpawnPoint();
         EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
         player.SetName(name);

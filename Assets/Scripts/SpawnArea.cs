@@ -3,19 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnArea : MonoBehaviour {
-    public GameObject template;
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Vector3 random = GenerateRandomPoint();
-            Debug.Log("Generated Random Point : " + random);
-            Instantiate(template, random, transform.rotation);
 
-        }
-    }
-
-    private Vector3 GenerateRandomPoint()
+    public Vector3 GenerateRandomPoint()
     {
         Vector3 rndPosWithin;
         rndPosWithin = RandomPointInBox(this.transform.position, this.transform.localScale);
