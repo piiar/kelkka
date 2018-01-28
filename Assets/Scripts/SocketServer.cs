@@ -92,16 +92,6 @@ public class SocketServer : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("Stopping");
-            wssv.Stop();
-        }
-    }
-
     public void SendMessage(string target, string msg) {
         Debug.Log("Sending " + msg + " to session " + target);
         WebSocketServiceHost host = null;
