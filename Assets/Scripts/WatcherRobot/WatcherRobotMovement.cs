@@ -8,6 +8,7 @@ public enum AiMode {
 }
 
 public class WatcherRobotMovement : MonoBehaviour {
+
     private static float accurateNavigationRange = 8.0f;
     private static float stoppingRange = 2.0f;
     private static float thinkCounterMax = 2.0f; // Seconds
@@ -17,11 +18,14 @@ public class WatcherRobotMovement : MonoBehaviour {
     public Transform target;
     private float thinkCounter;
     private NavMeshAgent agent;
+    private EnemyController controller;
     //private AiMode aiMode = AiMode.Flank;
 
     private int flankDirection = 1; // or -1. Can be randomized
 
     void Start() {
+        
+        controller = GetComponent<EnemyController>();
         thinkCounter = Random.Range(0, thinkCounterMax);
         agent = GetComponent<NavMeshAgent>();
         this.target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -100,6 +104,7 @@ public class WatcherRobotMovement : MonoBehaviour {
             // Do not move if close enough
             agent.isStopped = true;
             thinkCounter = Random.Range(0, thinkCounterMax);
+            controller.Attack();
         }
         else if (distanceToTarget < accurateNavigationRange) {
             // Midrange, update target every frame

@@ -6,6 +6,16 @@ public class EnemyController : MonoBehaviour {
     public string userId { get; private set; }
     private string userName = null;
     private string color = "#ffffff";
+
+    private Animator anim;
+    private readonly int attackHash = Animator.StringToHash("AttackMelee");
+    private readonly int blockHash = Animator.StringToHash("Block");
+    private readonly int speedHash = Animator.StringToHash("Speed");
+
+    public EnemyWeaponHandler weapon;
+    private bool isAttacking;
+    private bool isBlocking;
+
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
     private int health = 30;
@@ -31,11 +41,13 @@ public class EnemyController : MonoBehaviour {
 
     public SpawnPointGenerator spawnPointGenerator;
     // Use this for initialization
-    void Start() {   
+    void Start() {
+        anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
 
         transform.position = spawnPointGenerator.RandomSpawnPoint();
 
+        timeStamp = Time.time + 0.3f;
         /*
         //obj_Robo01_
         foreach (Transform child in transform)
@@ -49,6 +61,18 @@ public class EnemyController : MonoBehaviour {
 
         }
         */
+    }
+
+    void Update() {
+        if(isAttacking) {
+            anim.SetTrigger(attackHash);
+            isAttacking = false;
+            weapon.gameObject.SetActive(false);
+        }
+        else if(isBlocking) {
+            anim.SetTrigger(blockHash);
+            isBlocking = false;
+        }
     }
 
     void OnDestroy() {
@@ -66,6 +90,22 @@ public class EnemyController : MonoBehaviour {
 
         if(health <= 0) {
             Destroy(gameObject);
+        }
+    }
+
+    float timeStamp;
+    public void Attack() {
+        if(timeStamp <= Time.time) {
+            timeStamp = Time.time + 1.5f;
+            isAttacking = true;
+            weapon.gameObject.SetActive(true);
+        }
+    }
+
+    public void Block() {
+        if(timeStamp <= Time.time) {
+            timeStamp = Time.time + 1.5f;
+            isBlocking = true;
         }
     }
 
