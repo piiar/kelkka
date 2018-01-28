@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using LitJson;
 
 public class EnemyController : MonoBehaviour {
@@ -192,6 +193,19 @@ public class EnemyController : MonoBehaviour {
         JsonData data = JsonMapper.ToObject(action.data);
         JsonData robotStructure = data["robot"];
         Debug.Log("RoboStruct : " + robotStructure.ToString());
-        // TODO
+        if (robotStructure != null) {
+            int newAiMode = Int32.Parse(robotStructure["TOP"].ToString());
+            switch (newAiMode) {
+                case 0:
+                    aiMode = AiMode.Aggressive;
+                    break;
+                case 1:
+                    aiMode = AiMode.Flanking;
+                    break;
+                case 2:
+                    aiMode = AiMode.Objective;
+                    break;
+            }
+        }
     }
 }
