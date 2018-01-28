@@ -35,7 +35,7 @@ public class WeaponHandler : MonoBehaviour {
 
     public void Extend() {
         col.enabled = true;
-        trailRenderer.enabled = true;
+        //trailRenderer.enabled = true;
         skinnedMeshRenderer.SetBlendShapeWeight(0, 0f);
     }
 
