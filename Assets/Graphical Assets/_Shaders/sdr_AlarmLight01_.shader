@@ -26,7 +26,7 @@ Shader "Shader Forge/sdr_AlarmLight01_" {
             #define UNITY_PASS_FORWARDBASE
             #include "UnityCG.cginc"
             #pragma multi_compile_fwdbase_fullshadows
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal d3d11_9x xboxone ps4 psp2 n3ds wiiu 
             #pragma target 3.0
             uniform float4 _Color;
             uniform sampler2D _node_9605; uniform float4 _node_9605_ST;
@@ -48,8 +48,8 @@ Shader "Shader Forge/sdr_AlarmLight01_" {
             float4 frag(VertexOutput i) : COLOR {
 ////// Lighting:
 ////// Emissive:
-                float4 node_331 = _Time;
-                float2 node_6029 = (i.uv0+node_331.g*float2(1,0));
+                float4 node_81 = _Time;
+                float2 node_6029 = (i.uv0+node_81.g*float2(1,0));
                 float4 _node_9605_var = tex2D(_node_9605,TRANSFORM_TEX(node_6029, _node_9605));
                 float3 emissive = (_node_9605_var.rgb*_Color.rgb*_node_8661);
                 float3 finalColor = emissive;

@@ -59,8 +59,8 @@ Shader "Shader Forge/sdr_AnimatedDistortion" {
                 float faceSign = ( facing >= 0 ? 1 : -1 );
 ////// Lighting:
 ////// Emissive:
-                float4 node_761 = _Time;
-                float2 node_3150 = (i.uv0+pow((sin(((i.uv0+node_761.g*float2(-5,-1)).r*_Frequency))*0.2+0.7),_Power)*float2(0,0.1));
+                float4 node_2640 = _Time;
+                float2 node_3150 = (i.uv0+pow((sin(((i.uv0+node_2640.g*float2(-5,-1)).r*_Frequency))*0.2+0.7),_Power)*float2(0,0.1));
                 float4 _MainTex__var = tex2D(_MainTex_,TRANSFORM_TEX(node_3150, _MainTex_));
                 float3 emissive = (_Multiply*_Color.rgb*_MainTex__var.rgb);
                 float3 finalColor = emissive;

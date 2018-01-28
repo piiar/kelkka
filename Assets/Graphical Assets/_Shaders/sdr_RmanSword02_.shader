@@ -32,7 +32,7 @@ Shader "Shader Forge/sdr_RmanSword02_" {
             #include "UnityCG.cginc"
             #pragma multi_compile_fwdbase
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal d3d11_9x xboxone ps4 psp2 n3ds wiiu 
             #pragma target 3.0
             uniform float4 _TintColor;
             uniform sampler2D _node_2478; uniform float4 _node_2478_ST;
@@ -60,8 +60,8 @@ Shader "Shader Forge/sdr_RmanSword02_" {
 ////// Emissive:
                 float3 emissive = (_TintColor.rgb*_Multiplier);
                 float3 finalColor = emissive;
-                float4 node_1535 = _Time;
-                float2 node_1269 = (i.uv0+node_1535.g*float2(-10,0));
+                float4 node_3458 = _Time;
+                float2 node_1269 = (i.uv0+node_3458.g*float2(-10,0));
                 float4 _node_2478_var = tex2D(_node_2478,TRANSFORM_TEX(node_1269, _node_2478));
                 fixed4 finalRGBA = fixed4(finalColor,_node_2478_var.a);
                 UNITY_APPLY_FOG_COLOR(i.fogCoord, finalRGBA, fixed4(0,0,0,1));

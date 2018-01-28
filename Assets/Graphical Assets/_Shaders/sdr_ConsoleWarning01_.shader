@@ -25,7 +25,7 @@ Shader "Shader Forge/sdr_ConsoleWarning01_" {
             #define UNITY_PASS_FORWARDBASE
             #include "UnityCG.cginc"
             #pragma multi_compile_fwdbase_fullshadows
-            #pragma only_renderers d3d9 d3d11 glcore gles 
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal d3d11_9x xboxone ps4 psp2 n3ds wiiu 
             #pragma target 3.0
             uniform sampler2D _Texture; uniform float4 _Texture_ST;
             uniform float _Speed;
@@ -48,8 +48,7 @@ Shader "Shader Forge/sdr_ConsoleWarning01_" {
 ////// Emissive:
                 float4 _Texture_var = tex2D(_Texture,TRANSFORM_TEX(i.uv0, _Texture));
                 float4 node_7491 = _Time;
-                float node_6910 = (frac((node_7491.r*_Speed))*-2.0+1.0);
-                float3 emissive = (_Texture_var.rgb*(abs(node_6910)*1.2+0.5));
+                float3 emissive = (_Texture_var.rgb*(abs((frac((node_7491.r*_Speed))*-2.0+1.0))*1.2+0.5));
                 float3 finalColor = emissive;
                 return fixed4(finalColor,1);
             }
