@@ -38,11 +38,7 @@ public class MoneyManager : MonoBehaviour
         foreach (GameObject obj in spawns) {
             CreateSuitcase(obj.transform.position);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        Game.instance.Hud.SetMoney(moneyTotal);
     }
 
     public void CreateSuitcase(Vector3 spawnPosition)
@@ -56,6 +52,7 @@ public class MoneyManager : MonoBehaviour
 
     public void SpendMoney(int amount) {
         moneyTotal -= amount;
+        Game.instance.Hud.SetMoney(moneyTotal);
     }
 
 }

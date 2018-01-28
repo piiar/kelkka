@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
     private CharacterController controller;
     public ParticleSystem dustEmitter;
     public ParticleSystem sparkEmitter;
-    public GameObject weapon;
+    public WeaponHandler weapon;
     public GameObject shield;
     [Range(5f, 25f)]public float moveSpeed = 15f;
     private float velocity = 0f;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     void Start () {
         anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        weapon.SetActive(false);
+        weapon.Shrink();
         shield.SetActive(false);
     }
 
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
         isBlocking = Input.GetButtonDown("Fire2");
 
         if(isAttacking) {
-            SetWeaponActive(true);
+            weapon.Extend();
         }
         else if(isBlocking) {
             SetShieldActive(true);
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour {
 
         AnimatorStateInfo state = anim.GetCurrentAnimatorStateInfo(1);
         if(state.IsName("AttackMelee") && state.normalizedTime >= 1f) {
-            SetWeaponActive(false);
+            weapon.Shrink();
         }
         else if(state.IsName("Block") && state.normalizedTime >= 1f) {
             SetShieldActive(false);
@@ -112,10 +112,6 @@ public class PlayerController : MonoBehaviour {
 
         Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
         body.velocity = pushDir * 2f;
-    }
-
-    void SetWeaponActive(bool enabled) {
-        weapon.SetActive(enabled);
     }
 
     void SetShieldActive(bool enabled) {
