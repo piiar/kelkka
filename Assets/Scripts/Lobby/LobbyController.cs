@@ -6,6 +6,10 @@ public class LobbyController : MonoBehaviour {
 
     public GameObject playerList;
 
+    public void Start() {
+        Game.instance.playerListChanged.AddListener(PlayerListChanged);
+    }
+
     public void ClickHelp()
     {
 
@@ -13,7 +17,7 @@ public class LobbyController : MonoBehaviour {
 
     public void ClickBegin()
     {
-        //GameObject.FindGameObjectWithTag("GameHandler").GetComponent<Game>().StartGame();
+        Game.instance.StartGame();
     }
 
     public void PlayerListChanged(List<NetworkEnemyData> newList) {

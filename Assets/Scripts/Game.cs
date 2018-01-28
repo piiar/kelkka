@@ -59,6 +59,9 @@ public class Game : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (state == GameState.InGame && Input.GetKeyDown(KeyCode.Q)) {
+            StopGame();
+        }
     }
 
     void OnMessage(NetworkAction action) {
@@ -167,17 +170,21 @@ public class Game : MonoBehaviour {
     }
 
     public void StartGame() {
+        Debug.Log("StartGame");
         state = GameState.InGame;
         string message = "{'command':'startGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
-        SceneManager.LoadSceneAsync("GameScene");
+        SceneManager.LoadScene("GameScene");
     }
 
     public void StopGame() {
+        Debug.Log("StopGame");
         state = GameState.Lobby;
         string message = "{'command':'stopGame'}";
         SocketServer.instance.SendMessage("broadcast", message);
-        SceneManager.LoadSceneAsync("LobbyScene");
+        // Empty players list
+        players = new Dictionary<string, NetworkEnemyData>();
+        SceneManager.LoadScene("LobbyScene");
     }
 
     public List<NetworkEnemyData> GetEnemies() {
