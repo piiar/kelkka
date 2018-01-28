@@ -35,7 +35,7 @@ public class EnemyManager : MonoBehaviour {
 
     }
 
-    public void CreatePlayer(string ip, string name, JsonData robotStructure)
+    public void CreatePlayer(string ip, string name, JsonData robotStructure, string hexColor)
     {
         if (enemyPrefab == null)
         {
@@ -48,7 +48,7 @@ public class EnemyManager : MonoBehaviour {
         EnemyController player = obj.GetComponent<EnemyController>();
         player.SetUserId(ip);
         player.SetName(name);
-
+        //player.SetColor(hexColor);
         int top = Int32.Parse(robotStructure["TOP"].ToString());
         int bottom = Int32.Parse(robotStructure["BOTTOM"].ToString());
         int left = Int32.Parse(robotStructure["LEFT"].ToString());
