@@ -121,7 +121,8 @@ public class Game : MonoBehaviour {
         JsonData data = JsonMapper.ToObject(action.data);
         JsonData robotStructure = data["robot"];
         Debug.Log("RoboStruct : " + robotStructure.ToString());
-        EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure);
+        string hexCode = data["color"].ToString();
+        EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure, hexCode);
     }
 
     void OnChangeRobot(NetworkAction action)

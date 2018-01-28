@@ -5,6 +5,7 @@ public class EnemyController : MonoBehaviour {
 
     public string userId { get; private set; }
     private string userName = null;
+    private string color = "#ffffff";
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
     private int health = 30;
@@ -34,6 +35,20 @@ public class EnemyController : MonoBehaviour {
         controller = GetComponent<CharacterController>();
 
         transform.position = spawnPointGenerator.RandomSpawnPoint();
+
+        /*
+        //obj_Robo01_
+        foreach (Transform child in transform)
+        {
+            Debug.Log("Iterating on child: " + child.name);
+            if (child.name == "obj_Robo01_")
+            {
+                Debug.Log("Changing color to robot: " + color);
+                child.GetComponent<Material>().SetColor("_MaskColor", HexToColor(color));
+            }
+
+        }
+        */
     }
 
     void OnDestroy() {
@@ -62,6 +77,19 @@ public class EnemyController : MonoBehaviour {
 
     public void SetName(string name) {
         userName = name;
+    }
+
+    public void SetColor(string color)
+    {
+        this.color = color;
+    }
+
+    Color HexToColor(string hex)
+    {
+        byte r = byte.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+        byte g = byte.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+        byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+        return new Color32(r, g, b, 255);
     }
 
     void OnMessage(NetworkAction message) {
