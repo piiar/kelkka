@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
-    private string userId = null;
+    public string userId { get; private set; }
     private string userName = null;
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
@@ -18,13 +15,21 @@ public class EnemyController : MonoBehaviour {
 
     public ParticleSystem sparkEmitter;
 
-    // Use this for initialization
-    void Start() {
-        controller = GetComponent<CharacterController>();
-    }
+    public GameObject rubberWheels;
+    public GameObject trackWheels;
+    public GameObject metallicWheels;
 
-    void FixedUpdate() {
-        //controller.Move(movement);
+    public GameObject shieldLeft;
+    public GameObject flamerLeft;
+    public GameObject zapperLeft;
+
+    public GameObject shieldRight;
+    public GameObject flamerRight;
+    public GameObject zapperRight;
+
+    // Use this for initialization
+    void Start() {   
+        controller = GetComponent<CharacterController>();
     }
 
     void OnDestroy() {
@@ -61,32 +66,56 @@ public class EnemyController : MonoBehaviour {
 
     public void InitEquipment(int top, int bottom, int left, int right)
     {
-        weapon_left = weaponFor(left);
-        weapon_right = weaponFor(right);
+        weapon_left = weaponLeft(left);
+        weapon_right = weaponRight(right);
         aiMode = aiFor(top);
-        //movement
 
-        if (aiMode == AiMode.Aggressive || aiMode == AiMode.Flanking)
-        {
-            GetComponent<WatcherRobotMovement>().SetMovementTarget(GameObject.FindGameObjectWithTag("Player").transform);
-        }
-        else if (aiMode == AiMode.Objective)
-        {
-            GetComponent<WatcherRobotMovement>().SetMovementTarget(GameObject.FindGameObjectWithTag("Player").transform);
-        }
-        
+        //movement
+        setupWheels(bottom);
     }
 
-    private Weapon weaponFor(int i)
+    private Weapon weaponLeft(int i)
     {
         switch (i)
         {
             case 0:
+                shieldLeft.SetActive(true);
                 return new Weapon("Shield", 0);
             case 1:
+                flamerLeft.SetActive(true);
                 return new Weapon("FlameThrower", 10);
             default:
+                zapperLeft.SetActive(true);
                 return new Weapon("Zap", 20);
+        }
+    }
+
+    private Weapon weaponRight(int i) {
+        switch(i) {
+            case 0:
+                shieldRight.SetActive(true);
+                return new Weapon("Shield", 0);
+            case 1:
+                flamerRight.SetActive(true);
+                return new Weapon("FlameThrower", 10);
+            default:
+                zapperRight.SetActive(true);
+                return new Weapon("Zap", 20);
+        }
+    }
+
+    private void setupWheels(int i) {
+        speedClass = i;
+        switch(i) {
+            case 0:
+                metallicWheels.SetActive(true);
+                break;
+            case 1:
+                trackWheels.SetActive(true);
+                break;
+            default:
+                rubberWheels.SetActive(true);
+                break;
         }
     }
 
