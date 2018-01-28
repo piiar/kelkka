@@ -135,6 +135,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &1363706651550466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4101746618803268}
+  - component: {fileID: 135719827982179170}
+  - component: {fileID: 114100231781694892}
+  m_Layer: 0
+  m_Name: weaponTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1443058548877642
 GameObject:
   m_ObjectHideFlags: 1
@@ -414,6 +431,19 @@ Transform:
   m_Father: {fileID: 4548192393436868}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4101746618803268
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363706651550466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.53, z: 0.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4959305938156904}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4166061500426868
 Transform:
   m_ObjectHideFlags: 1
@@ -688,10 +718,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749567268256578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.485789, y: 0.0000017108717, z: 13.311833}
+  m_LocalPosition: {x: 2.4629395, y: 0.074697375, z: -32.059433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4548192393436868}
+  - {fileID: 4101746618803268}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -731,6 +762,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114100231781694892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363706651550466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701df5d2fcb3e974a86a8737d1cb134c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!114 &114585247787461208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -754,6 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cab18793290271c4fb2082b6612caa07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 114100231781694892}
   speedClass: 0
   sparkEmitter: {fileID: 0}
   rubberWheels: {fileID: 1214394496697858}
@@ -766,6 +810,18 @@ MonoBehaviour:
   flamerRight: {fileID: 1828840764220726}
   zapperRight: {fileID: 1964800417867422}
   spawnPointGenerator: {fileID: 0}
+--- !u!135 &135719827982179170
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1363706651550466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.96221066
+  m_Center: {x: 0, y: 0, z: 0.46221066}
 --- !u!136 &136724529164218980
 CapsuleCollider:
   m_ObjectHideFlags: 1
