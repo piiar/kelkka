@@ -24,6 +24,7 @@ public class WatcherRobotMovement : MonoBehaviour {
     void Start() {
         thinkCounter = Random.Range(0, thinkCounterMax);
         agent = GetComponent<NavMeshAgent>();
+        this.target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Update() {

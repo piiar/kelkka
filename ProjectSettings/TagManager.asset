@@ -9,6 +9,7 @@ TagManager:
   - SpawnArea
   - Obstacle
   - Enemy
+  - suitcase
   layers:
   - Default
   - TransparentFX

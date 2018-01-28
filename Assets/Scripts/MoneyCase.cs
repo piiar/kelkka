@@ -4,32 +4,27 @@ using UnityEngine;
 
 public class MoneyCase : MonoBehaviour {
 
-    private int startMoneyTotal = 2000;
+    private int money = 0;
 
-    public void InitMoneyCase()
+    public void InitMoneyCase(int amount)
     {
-        startMoneyTotal = 2000;
+        money = amount;
     }
 
     public void MakeTransactionTo(string playerId, int amount)
     {
-        if (startMoneyTotal - amount < 0) {
-            Debug.Log("Not enough money left");
-            return;
-        }
         NetworkEnemyData player = Game.instance.GetEnemy(playerId);
         if (player != null) {
             string msg = "{'money':" + amount + "}";
             SocketServer.instance.SendMessage(player.sessionId, msg);
-            startMoneyTotal -= amount;
+            MoneyManager.instance.SpendMoney(amount);
         }
     }
 
     void OnTriggerEnter(Collider collider) {
-        if(collider.CompareTag("Enemy")) {
-            // TODO: do something?
+        if (collider.CompareTag("Enemy")) {
             EnemyController enemy = collider.transform.GetComponent<EnemyController>();
-            //string id = enemy.userId;
+            MakeTransactionTo(enemy.userId, money);
             Destroy(gameObject);
         }
     }
