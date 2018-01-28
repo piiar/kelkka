@@ -3,17 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnArea : MonoBehaviour {
-    public GameObject template;
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            Vector3 random = GenerateRandomPoint();
-            Debug.Log("Generated Random Point : " + random);
-            Instantiate(template, random, transform.rotation);
-
-        }
-    }
 
     public Vector3 GenerateRandomPoint()
     {

@@ -28,9 +28,12 @@ public class EnemyController : MonoBehaviour {
     public GameObject flamerRight;
     public GameObject zapperRight;
 
+    public SpawnPointGenerator spawnPointGenerator;
     // Use this for initialization
     void Start() {   
         controller = GetComponent<CharacterController>();
+
+        transform.position = spawnPointGenerator.RandomSpawnPoint();
     }
 
     void OnDestroy() {
