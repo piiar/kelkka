@@ -48,7 +48,6 @@ public class Game : MonoBehaviour {
         Application.runInBackground = true;
         EventManager.StartListening("game", OnMessage);
 
-        Hud = FindObjectOfType<HudController>();
     }
 
     void OnDisable()
@@ -62,6 +61,10 @@ public class Game : MonoBehaviour {
         if (state == GameState.InGame && Input.GetKeyDown(KeyCode.Q)) {
             StopGame();
         }
+    }
+
+    public void SetHud(HudController _hud) {
+        Hud = _hud as HudController;
     }
 
     void OnMessage(NetworkAction action) {

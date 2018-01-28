@@ -9,6 +9,10 @@ public class HudController : MonoBehaviour {
     public GameObject progressObject;
     public Text money;
 
+    void Awake() {
+        Game.instance.SetHud(this);
+    }
+
     // Use this for initialization
     void Start () {
     }

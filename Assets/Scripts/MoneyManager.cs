@@ -38,7 +38,9 @@ public class MoneyManager : MonoBehaviour
         foreach (GameObject obj in spawns) {
             CreateSuitcase(obj.transform.position);
         }
-        Game.instance.Hud.SetMoney(moneyTotal);
+        if (Game.instance.Hud) {
+            Game.instance.Hud.SetMoney(moneyTotal);
+        }
     }
 
     public void CreateSuitcase(Vector3 spawnPosition)
