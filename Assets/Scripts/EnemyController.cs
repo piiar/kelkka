@@ -64,9 +64,10 @@ public class EnemyController : MonoBehaviour {
         //sparkEmitter.transform.rotation = targetRotation;
         //sparkEmitter.Emit(10);
 
-        if(health <= 0) {
-            // TODO
-            print("died");
+        if (health <= 0) {
+            NetworkEnemyData player = Game.instance.GetEnemy(userId);
+            SocketServer.instance.SendMessage(player.sessionId, "{'command':'stopGame'}");
+            Destroy(gameObject);
         }
     }
 

@@ -225,7 +225,6 @@ GameObject:
   - component: {fileID: 114585247787461208}
   - component: {fileID: 195718169313719442}
   - component: {fileID: 136724529164218980}
-  - component: {fileID: 54158692874763744}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -688,28 +687,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1749567268256578}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.4417543, y: 0, z: 0.30778694}
+  m_LocalPosition: {x: 8.485789, y: 0.0000017108717, z: 13.311833}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4548192393436868}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54158692874763744
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1749567268256578}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!95 &95941944870648420
 Animator:
   serializedVersion: 3
@@ -762,6 +746,7 @@ MonoBehaviour:
   shieldRight: {fileID: 1960650430069924}
   flamerRight: {fileID: 1828840764220726}
   zapperRight: {fileID: 1964800417867422}
+  spawnPointGenerator: {fileID: 0}
 --- !u!136 &136724529164218980
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour {
         lastFeetHit = feetHit;
 
         Rigidbody body = hit.collider.attachedRigidbody;
-        if(body == null || body.isKinematic)
+        if(body == null || hit.transform.CompareTag("Enemy"))
             return;
 
         if(hit.moveDirection.y < -0.3f)
