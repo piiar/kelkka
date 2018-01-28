@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LitJson;
@@ -30,6 +29,7 @@ public class EnemyManager : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+
     }
 
     public void CreatePlayer(string ip, string name, JsonData robotStructure)
@@ -44,12 +44,13 @@ public class EnemyManager : MonoBehaviour {
         player.SetUserId(ip);
         player.SetName(name);
 
-        int top = Int32.Parse(robotStructure["TOP"].ToString());
-        int bottom = Int32.Parse(robotStructure["BOTTOM"].ToString());
-        int left = Int32.Parse(robotStructure["LEFT"].ToString());
-        int right = Int32.Parse(robotStructure["RIGHT"].ToString());
-        Debug.Log("top " + top + " bottom " + bottom + " left " + left + " right " + right);
-        player.InitEquipment(top, bottom, left, right);
+        int top = int.Parse(robotStructure["TOP"].ToString());
+        int left = int.Parse(robotStructure["LEFT"].ToString());
+        int right = int.Parse(robotStructure["RIGHT"].ToString());
+        int bottom = int.Parse(robotStructure["BOTTOM"].ToString());
+        
+        player.InitEquipment(top, left, right, bottom);
+
     }
 
 }

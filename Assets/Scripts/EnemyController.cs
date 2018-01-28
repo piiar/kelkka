@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class EnemyController : MonoBehaviour {
 
-    public string userId { get; private set; }
+    private string userId = null;
     private string userName = null;
     private Vector3 movement = Vector3.zero;
     private CharacterController controller;
@@ -65,6 +65,16 @@ public class EnemyController : MonoBehaviour {
         weapon_right = weaponFor(right);
         aiMode = aiFor(top);
         //movement
+
+        if (aiMode == AiMode.Aggressive || aiMode == AiMode.Flanking)
+        {
+            GetComponent<WatcherRobotMovement>().SetMovementTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        }
+        else if (aiMode == AiMode.Objective)
+        {
+            GetComponent<WatcherRobotMovement>().SetMovementTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        }
+        
     }
 
     private Weapon weaponFor(int i)
