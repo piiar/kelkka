@@ -80,6 +80,16 @@ public class Game : MonoBehaviour {
                     this.OnAddRobot(action);
                 }
                 break;
+            case "changeRobot":
+                if (state != GameState.InGame)
+                {
+                    SendError(action.senderSession, "Invalid game state");
+                }
+                else
+                {
+                    this.OnChangeRobot(action);
+                }
+                break;
             default:
                 Debug.Log("Unrecognized command: " + command);
                 break;
@@ -112,6 +122,20 @@ public class Game : MonoBehaviour {
         JsonData robotStructure = data["robot"];
         Debug.Log("RoboStruct : " + robotStructure.ToString());
         EnemyManager.instance.CreatePlayer(action.senderIp, name, robotStructure);
+    }
+
+    void OnChangeRobot(NetworkAction action)
+    {
+        Debug.Log("OnChangeRobot");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies) {
+            EnemyController ctrl = enemy.GetComponent<EnemyController>();
+            if (ctrl.userId == action.senderIp) {
+                Debug.Log("Found robot " + action.senderIp);
+                ctrl.ChangeRobot(action);
+                break;
+            }
+        }
     }
 
     void RegisterPlayer(string ip, string sessionId) {

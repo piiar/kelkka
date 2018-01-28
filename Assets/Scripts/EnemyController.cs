@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using LitJson;
 
 public class EnemyController : MonoBehaviour {
 
@@ -153,5 +154,12 @@ public class EnemyController : MonoBehaviour {
             default:
                 return 1.5f;
         }
+    }
+
+    public void ChangeRobot(NetworkAction action) {
+        JsonData data = JsonMapper.ToObject(action.data);
+        JsonData robotStructure = data["robot"];
+        Debug.Log("RoboStruct : " + robotStructure.ToString());
+        // TODO
     }
 }
